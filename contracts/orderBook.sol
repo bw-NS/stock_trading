@@ -1,12 +1,16 @@
 pragma solidity >=0.5.0 <0.7.0;
 
-import "./SponsorWhitelistControl.sol";
+import "./order.sol";
 
 contract orderBook {
-    address public orders; // array of orders
+    mapping(byte32 => Order.Data) private orders; // array of orders
+    mapping(string => uint256) completeData;
     mapping (address => uint) private balances;
 
     function matching();
+    function saveOrder();
+    function removeOrder();
+    function completeOrder();
     
     SponsorWhitelistControl constant private SPONSOR = SponsorWhitelistControl(address(0x0888000000000000000000000000000000000001));
 
