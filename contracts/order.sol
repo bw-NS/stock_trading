@@ -12,13 +12,15 @@ library Order {
 
     struct Data{
 
-        bytes32 id;
+        uint256 id;
         address creator;
         Order.Types  typ; //buy sell ask
         string  stock; //  string
         uint256  volumn; //  int
         Order.MatchTypes matchtype; // type include {immediate, limited}
         uint256 price;
+        bytes32 betterOrder;
+        bytes32 worseOrder;
 
     }
     /*function getOrderId(Order.Data _data) internal view returns (bytes32){
