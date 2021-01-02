@@ -13,20 +13,20 @@ library Order {
     struct Data{
 
         bytes32 id;
-        address creator
+        address creator;
         Order.Types  typ; //buy sell ask
         string  stock; //  string
         uint256  volumn; //  int
         Order.MatchTypes matchtype; // type include {immediate, limited}
-        uint256 price
+        uint256 price;
 
     }
-    function getOrderId(Order.Data _data) internal view returns (bytes32){
+    /*function getOrderId(Order.Data _data) internal view returns (bytes32){
         return _data.id;
-    }
+    }*/
  
-    function submit()
-    function cancel()
+    //function submit()
+    //function cancel()
 
    
 }

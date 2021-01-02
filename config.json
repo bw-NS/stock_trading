@@ -1,8 +1,8 @@
 {
-  "main": "./contracts/Coin.sol",
-  "deploy": "./build/contracts/Coin.json",
+  "main": "./contracts/orderBook.sol",
+  "deploy": "./build/contracts/orderBook.json",
   "compilers": {
     "cfxtruffle": "0.0.8",
-    "solc": "0.6.12"
+    "solc": "0.6.5"
   }
 }
