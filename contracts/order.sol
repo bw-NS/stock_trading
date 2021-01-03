@@ -23,6 +23,11 @@ library Order {
         uint256 worseOrder;
 
     }
+
+    struct Property{
+        string stock;
+        uint256 volumn;
+    }
     /*function getOrderId(Order.Data _data) internal view returns (bytes32){
         return _data.id;
     }*/

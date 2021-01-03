@@ -4,36 +4,49 @@ pragma experimental ABIEncoderV2;
 import "./order.sol";
 
 contract orderBook {
-    uint256 constant MAX_STOCK = 99999;
-    uint256 constant MAX_ORDER = 99999;
-    uint256[][2] id_array;
-    mapping(uint256 => Order.Data) private orders; // array of orders
-    mapping(string => uint256) completeData;
-    string[MAX_STOCK] stockTable;
-    uint256 num_stock = 0;
-    mapping(address => uint256[][2]) creatorTable; //index 0:buy 1:sell
-    mapping(string => uint256[][2]) stockOrder;
-    mapping(string => uint256[2]) bestOrders;
-    //mapping(address => bytes32[2][]) testTable;
-    uint256[] Idvacancy;
+    uint256 constant MAX_STOCK = 99999; //max number of stock that can be stored in this orderbook 
+    uint256 constant MAX_ORDER = 99999; //max number of unfilled order ...
+    
+    uint256[][2] id_array;                      //store all the unfilled orderIds 
+                                                //split to index 0:buy 1:sell
+
+    mapping(uint256 => Order.Data) private orders; // array of orders storing data
+
+    mapping(string => uint256) completeData;        //for future use record order have been filled
+
+    string[MAX_STOCK] stockTable;                   //store all the stocks
+    uint256 num_stock = 0;                          // stock index tracker 
+    mapping(address => uint256[][2]) creatorTable;  //mapping user to orderIDs // for accessing data frontend
+    mapping(string => uint256[][2]) stockOrder;     //mapping stock to orderIDs // for accessing data frontend
+    mapping(string => uint256[2]) bestOrders;       //tracking the best buy/sell order for each stock
+
+    uint256[] Idvacancy;                            // tracker for assigning orderIds          
     uint256 nextAvl = 0; 
 
+    mapping(address=>mapping(string=>uint256)) propertyTable;
+    /*This section for issue and remove stocks*/
+    /***
+    TO DO: only verified company can issue stocks (whitelist)
+    ***/
     function addStocks(string memory _stockName) public returns(bool){
         bool _exist; 
         uint256 _t;
-        (_exist, _t) =  checkStockInMarket(_stockName);
-        require(!_exist, "stock already in market");
+        (_exist, _t) =  checkStockInMarket(_stockName);            
+        require(!_exist, "stock already in market");          //check if name repeat
         stockTable[num_stock] = _stockName;
         num_stock++;
         bestOrders[_stockName] = [MAX_ORDER,MAX_ORDER];
         return true;
     } 
-    function checkBestOrders(string memory stock) public view returns(uint256, uint256){
+    //check the best buy/sell order for stock 
+    function checkBestOrders(string memory stock) public view returns(uint256, uint256){   
         return (bestOrders[stock][0],bestOrders[stock][1]);
     }
+    //for debugging can remove
     function getNumStocks() public view returns(uint256){
         return num_stock;
     }
+    //check if stock exist, can be internal 
     function checkStockInMarket(string memory proposed) public view returns(bool, uint){
         for(uint i=0; i<num_stock; i++){
             if (keccak256(bytes(stockTable[i])) == keccak256(bytes(proposed))){
@@ -42,6 +55,7 @@ contract orderBook {
         }
         return (false,MAX_STOCK);
     }
+    
     function removeStock(string memory stockName) public returns(bool){
         bool _exist;
         uint index;
@@ -54,7 +68,7 @@ contract orderBook {
         }
         return false;
     }
-
+    //print the stock array
     function getStockArray() public view returns(string[] memory){
         string[] memory a = new string[](num_stock);
         for(uint256 i=0; i<num_stock; i++){
@@ -62,6 +76,8 @@ contract orderBook {
         }
         return a;
     }
+
+    /*This section store orderId to user*/
 
     function userOrderNum(address _addr) public view returns(uint256, uint256){
         return (creatorTable[_addr][0].length,creatorTable[_addr][1].length) ;
@@ -97,6 +113,8 @@ contract orderBook {
         return true;
         }
     }
+
+    /*This section assign orderID to Stock*/
 
     function addOrderToStock(string memory stockName,Order.Types _typ, uint256 _orderId) public returns(bool){
         uint256 _typ_int = uint256(_typ);
@@ -136,14 +154,30 @@ contract orderBook {
     function getStockOrderNum(string memory stockName) public view returns(uint256, uint256){
         return (stockOrder[stockName][0].length,stockOrder[stockName][1].length);
     }
-    // some look up functions
+
+    
+    /*some look up functions*/ 
     function getOrderData(uint256 _orderId) public view returns( Order.Data memory){
         return orders[_orderId];
     }
+    function getOrderCreator(uint256 _orderId) internal view returns(address){
+        return getOrderData(_orderId).creator;
+    }
+    function getOrderPrice(uint256 _orderId) internal view returns(uint256){
+        return getOrderData(_orderId).price;
+    }
+    function getOrderVolume(uint256 _orderId) internal view returns(uint256){
+        return getOrderData(_orderId).volumn;
+    }
+    function getOrderMatchType(uint256 _orderId) internal view returns(uint256){
+        return uint256(getOrderData(_orderId).matchtype);
+    }
+    //abandoned orderId method should remove
     function getOrderId( address creator,Order.Types typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price, uint createtime) public view returns(bytes32){
         return sha256(abi.encodePacked(creator, typ, stock, volumn, matchtype, price,createtime));
     }
 
+    //for assigning unique orderId to each new buy/sell order
     function assignOrderId() public returns (uint256){
         if(Idvacancy.length>0){
             uint256 id = Idvacancy[Idvacancy.length-1];
@@ -155,14 +189,21 @@ contract orderBook {
             return nextAvl-1;
         }
     }
+
+    //some events print out for logging 
     event savedOrderInfo(uint256 _orderId, string stockName, uint256 price);
-    //function insertOrderToList(Order.Data _order){}
     event message(string msg);
     event b_w(uint256 better, uint256 worse);
-    function saveOrder(address creator,Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(bool){
+
+    //orders form a linked list by _order.better _order.worse
+    //create order globally
+    function saveOrder(Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(bool){
         //uint256 _orderId  = getOrderId(creator, typ, stock, volumn, matchtype, price, now);
         uint256 _typ = uint256(typ);
-        if (_typ<2){          
+        if (_typ<2){      //save if buy/sell, fill if ask   
+            //check condition commented out for debugging convinience
+            //if(_typ==0){require(msg.sender.balance>fund, "buyer don't have enough fund"); }
+            //if(_typ==1){require(propertyTable[msg.sender][stock]>=volumn, "seller don't have enough stock to sell");} 
             uint256 better;
             uint256 worse;
             (better, worse) = getBetterOrder( stock, typ, price);
@@ -170,13 +211,14 @@ contract orderBook {
             uint256 _orderId = assignOrderId();
             Order.Data storage _order = orders[_orderId];
             _order.id = _orderId;
-            _order.creator = creator;
+            _order.creator = msg.sender;
             _order.typ = typ;
             _order.stock = stock;
             _order.volumn = volumn;
             _order.matchtype = matchtype;
             _order.price = price;
             
+            //link list manipulation
             if(better==MAX_ORDER ){
                 if(bestOrders[stock][_typ] == MAX_ORDER){
                     emit message("initial brunch");
@@ -208,17 +250,18 @@ contract orderBook {
             }
 
             id_array[_typ].push(_orderId);
-            addOrderToUser(creator, typ, _orderId);
+            addOrderToUser(msg.sender, typ, _orderId);
             addOrderToStock(stock, typ,  _orderId);
             emit savedOrderInfo( _orderId, stock, price);
             return true;
         }
         else{
-            require(fillAskOrder(), "fill ask failed");
+            require(fillAskOrder(stock), "fill ask failed");
             return true;
         }
     }
 
+    //helper for remove order from link list
     function breakLink(uint256 _orderId,  uint256 _typ) public returns(bool){
         Order.Data memory _data= getOrderData(_orderId);
         uint256 better = _data.betterOrder;
@@ -245,6 +288,7 @@ contract orderBook {
 
     event removedOrderInfo(uint256 orderId, address creator, string stockName, Order.Types typ, uint256 price);
     
+    //remove order globally
     function removeOrder(uint256 _orderId) public returns(bool){
         require(removeFromIdArray(_orderId), "Order not exist");
         Order.Data memory _data= getOrderData(_orderId);
@@ -269,6 +313,7 @@ contract orderBook {
         }
         return (false, MAX_ORDER);
     }
+    //remove helper
     function removeFromIdArray(uint256 _orderId) public returns(bool){
         bool _exist;
         uint256 index;
@@ -287,6 +332,7 @@ contract orderBook {
         return (id_array[0].length, id_array[1].length);
     }
 
+    //find the position in linklist of the order
     function getBetterOrder(string memory stockName, Order.Types typ,  uint256 price) public view returns(uint256, uint256){
 
         bool exist;
@@ -333,14 +379,83 @@ contract orderBook {
                 return (prev_id, cur_id);
         }
     }
+    /*
+    event fillOrderInfo(uint256 ordreId, bool complete);
+    //not finished 
+    
+    function transfer(address payable seller, address buyer, string memory stock, uint256 price, uint256 volumn) public payable returns(bool){
+        uint256 fund = price*volumn;
+        require(propertyTable[seller][stock]>volumn, "seller don't have enough stock to sell"); //should check earlier
+        require(buyer.balance>fund, "buyer don't have enough fund");
+        seller.transfer(fund); // critical how to make buyer send the money?????????
+        propertyTable[seller][stock]+=volumn;
+        return true;
+    }
 
+    //not finished
 
     function fillOrder() public returns(bool){
+        for(uint256 i =0; i< num_stock; i++){
+            string memory stockName = stockTable[i];
+            uint256 bestbuy = bestOrders[stockName][0];
+            uint256 bestsell = bestOrders[stockName][1];
+            while(getOrderPrice(bestbuy)>=getOrderPrice(bestsell)){
+                if(getOrderVolume(bestbuy)<getOrderVolume(bestsell)){
+                    uint256 remaindar = getOrderVolume(bestsell) - getOrderVolume(bestbuy);
+                    orders[bestsell].volumn = remaindar;
+                    removeOrder(bestbuy);
+                    emit fillOrderInfo(bestbuy, true);
+                    emit fillOrderInfo(bestsell, false);
+                }
+                else{
+                    if(getOrderVolume(bestbuy)==getOrderVolume(bestsell)){
+                    removeOrder(bestbuy);
+                    removeOrder(bestsell);
+                    emit fillOrderInfo(bestbuy, true);
+                    emit fillOrderInfo(bestsell, true);
+                    }
+                    else{
+                        uint256 remaindar = getOrderVolume(bestbuy) - getOrderVolume(bestsell);
+                        orders[bestbuy].volumn = remaindar;
+                        removeOrder(bestbuy);
+                        emit fillOrderInfo(bestbuy, false);
+                        emit fillOrderInfo(bestsell, true);
+                        
+                    }
+                    
+                }
+            bestbuy = bestOrders[stockName][0];
+            bestsell = bestOrders[stockName][1];
+            }
         
+        }
 
     }
-    function fillAskOrder() public returns(bool){
-    
+    */
+    //fill ask Order
+    event askOrderRes(string stock , uint256 p_b,uint256 v_b,uint256 p_s,uint256 v_s  );
+    function fillAskOrder(string memory stock) public returns(bool){//, uint256 volumn
+        bool _e;
+        uint256 _t;
+        (_e, _t) = checkStockInMarket(stock);
+        require(_e,"stock not in market");
+        uint256 bestbuy = bestOrders[stock][0];
+        uint256 bestsell = bestOrders[stock][1];
+        uint256[4] memory data;
+        if(bestbuy == MAX_ORDER){
+            data[0] = MAX_ORDER;
+            data[1] = MAX_ORDER;
+        }
+        if(bestsell == MAX_ORDER){
+            data[2] = MAX_ORDER;
+            data[3] = MAX_ORDER;
+        }
+        data[1] = getOrderData(bestbuy).volumn;
+        data[3] = getOrderData(bestsell).volumn;
+        data[0] = getOrderData(bestbuy).price;
+        data[2] = getOrderData(bestsell).price;
+        emit askOrderRes(stock,data[0],data[1],data[2],data[3] );
+        return true;
     }
 
     //function completeOrder();
