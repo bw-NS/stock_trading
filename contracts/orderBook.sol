@@ -11,10 +11,9 @@ contract orderBook {
     mapping(string => uint256) completeData;
     string[MAX_STOCK] stockTable;
     uint256 num_stock = 0;
-    mapping(address => uint256[][2]) creatorTable;
+    mapping(address => uint256[][2]) creatorTable; //index 0:buy 1:sell
     mapping(string => uint256[][2]) stockOrder;
-    uint256[2] bestOrder = [MAX_ORDER,MAX_ORDER]; //index 0:buy 1:sell
-    uint256[2] worstOrder =[MAX_ORDER,MAX_ORDER];
+    mapping(string => uint256[2]) bestOrders;
     //mapping(address => bytes32[2][]) testTable;
     uint256[] Idvacancy;
     uint256 nextAvl = 0; 
@@ -26,8 +25,12 @@ contract orderBook {
         require(!_exist, "stock already in market");
         stockTable[num_stock] = _stockName;
         num_stock++;
+        bestOrders[_stockName] = [MAX_ORDER,MAX_ORDER];
         return true;
     } 
+    function checkBestOrders(string memory stock) public view returns(uint256, uint256){
+        return (bestOrders[stock][0],bestOrders[stock][1]);
+    }
     function getNumStocks() public view returns(uint256){
         return num_stock;
     }
@@ -152,39 +155,106 @@ contract orderBook {
             return nextAvl-1;
         }
     }
-    event savedOrderId(uint256 _orderId);
+    event savedOrderInfo(uint256 _orderId, string stockName, uint256 price);
     //function insertOrderToList(Order.Data _order){}
-    function saveOrder(address creator,Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(uint256){
+    event message(string msg);
+    event b_w(uint256 better, uint256 worse);
+    function saveOrder(address creator,Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(bool){
         //uint256 _orderId  = getOrderId(creator, typ, stock, volumn, matchtype, price, now);
-        uint256 _orderId = assignOrderId();
-        Order.Data storage _order = orders[_orderId];
-        _order.id = _orderId;
-        _order.creator = creator;
-        _order.typ = typ;
-        _order.stock = stock;
-        _order.volumn = volumn;
-        _order.matchtype = matchtype;
-        _order.price = price;
         uint256 _typ = uint256(typ);
         if (_typ<2){          
+            uint256 better;
+            uint256 worse;
+            (better, worse) = getBetterOrder( stock, typ, price);
+            emit b_w(better, worse);
+            uint256 _orderId = assignOrderId();
+            Order.Data storage _order = orders[_orderId];
+            _order.id = _orderId;
+            _order.creator = creator;
+            _order.typ = typ;
+            _order.stock = stock;
+            _order.volumn = volumn;
+            _order.matchtype = matchtype;
+            _order.price = price;
+            
+            if(better==MAX_ORDER ){
+                if(bestOrders[stock][_typ] == MAX_ORDER){
+                    emit message("initial brunch");
+                    bestOrders[stock][_typ] = _orderId;
+                    _order.betterOrder=MAX_ORDER;
+                    _order.worseOrder=MAX_ORDER;
+                }
+                else{
+                    emit message("insert head");
+                    uint256 cur_best = bestOrders[stock][_typ];
+                    bestOrders[stock][_typ] = _orderId;
+                    _order.betterOrder=MAX_ORDER;
+                    _order.worseOrder=cur_best;
+                    orders[cur_best].betterOrder=_orderId;
+                }
+            }
+            else{
+                _order.betterOrder = better;
+                _order.worseOrder = worse;
+                if(worse!=MAX_ORDER){
+                    emit message("insert middle");
+                    orders[better].worseOrder = _orderId;
+                    orders[worse].betterOrder = _orderId;
+                }
+                else{
+                    emit message("insert tail");
+                    orders[better].worseOrder = _orderId;
+                }
+            }
+
             id_array[_typ].push(_orderId);
-            emit savedOrderId( _orderId);
             addOrderToUser(creator, typ, _orderId);
             addOrderToStock(stock, typ,  _orderId);
+            emit savedOrderInfo( _orderId, stock, price);
+            return true;
         }
         else{
-            require(fillAskOrder(_orderId), "fill ask failed");
+            require(fillAskOrder(), "fill ask failed");
+            return true;
         }
-        return _orderId;
     }
+
+    function breakLink(uint256 _orderId,  uint256 _typ) public returns(bool){
+        Order.Data memory _data= getOrderData(_orderId);
+        uint256 better = _data.betterOrder;
+        uint256 worse = _data.worseOrder;
+        require(_typ < 2, "_typ out of bound");
+        emit b_w(better, worse);
+        if(better == MAX_ORDER){
+            emit message("delete best");
+            require(bestOrders[_data.stock][_typ] == _orderId, "Order has no better but is not best in book!");
+            bestOrders[_data.stock][_typ] = worse;
+            if(worse != MAX_ORDER){
+                orders[worse].betterOrder = MAX_ORDER;
+            }
+        }
+        else{
+            emit message("delete middle");
+            orders[better].worseOrder = worse;
+            if(worse != MAX_ORDER){
+                orders[worse].betterOrder =better;
+            }
+        }
+        return true;
+    }
+
+    event removedOrderInfo(uint256 orderId, address creator, string stockName, Order.Types typ, uint256 price);
+    
     function removeOrder(uint256 _orderId) public returns(bool){
         require(removeFromIdArray(_orderId), "Order not exist");
         Order.Data memory _data= getOrderData(_orderId);
-        //uint256 _typ = uint256(_data.typ);
+        uint256 _typ = uint256(_data.typ);
         require(removeOrderFromStock(_data.stock,_data.typ, _orderId), "Order not registered to stock");
         require(removeOrderFromUser(_data.creator,_data.typ, _orderId), "Order not registered to User");
+        require(breakLink(_orderId, _typ),"Link break fail");
         delete orders[_orderId];
         Idvacancy.push(_orderId);
+        emit removedOrderInfo(_orderId, _data.creator, _data.stock, _data.typ, _data.price );
         return true;
     }
 
@@ -207,7 +277,7 @@ contract orderBook {
         require(_typ != 2, "ask order is not stored");
         (_exist, index) = checkOrderExist(_orderId);
         if(_exist){
-            id_array[_typ][index] = id_array[_typ][id_array.length-1];
+            id_array[_typ][index] = id_array[_typ][id_array[_typ].length-1];
             id_array[_typ].pop();
             return true;
         }
@@ -217,11 +287,59 @@ contract orderBook {
         return (id_array[0].length, id_array[1].length);
     }
 
+    function getBetterOrder(string memory stockName, Order.Types typ,  uint256 price) public view returns(uint256, uint256){
+
+        bool exist;
+        uint256 _t; 
+        (exist,_t) = checkStockInMarket(stockName);
+        require(exist, "stock not exist");
+        //first order
+        if(bestOrders[stockName][uint256(typ)]==MAX_ORDER){
+            return (MAX_ORDER,MAX_ORDER);
+        }
+
+        uint256 _type = uint256(typ);
+                                       //greater is better for buy; less is better for sell
+        
+        uint256 cur_id = bestOrders[stockName][_type];
+        uint256 prev_id = cur_id;
+        Order.Data memory _data = getOrderData(cur_id);
+        if(_type ==0){
+            while(price<=_data.price){
+                prev_id = cur_id;
+                cur_id = _data.worseOrder;
+                if( cur_id==MAX_ORDER){
+                    return (prev_id, cur_id);
+                }
+                _data = getOrderData(cur_id);
+            }
+            if(prev_id == cur_id){
+                return (MAX_ORDER, cur_id);
+            }
+            return (prev_id, cur_id);
+        }
+        else{
+            while(price>=_data.price){
+                    prev_id = cur_id;
+                    cur_id = _data.worseOrder;
+                    if( cur_id==MAX_ORDER){
+                        return (prev_id, cur_id);
+                    }
+                    _data = getOrderData(cur_id);
+                }
+                if(prev_id == cur_id){
+                    return (MAX_ORDER, cur_id);
+                }
+                return (prev_id, cur_id);
+        }
+    }
+
+
     function fillOrder() public returns(bool){
         
 
     }
-    function fillAskOrder(uint256 _orderId) public returns(bool){
+    function fillAskOrder() public returns(bool){
     
     }
 
