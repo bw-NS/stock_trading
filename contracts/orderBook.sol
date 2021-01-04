@@ -1,4 +1,4 @@
-pragma solidity >=0.5.0 <0.7.0;
+pragma solidity >=0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "./order.sol";
@@ -24,13 +24,15 @@ contract orderBook {
     uint256 nextAvl = 0; 
 
     mapping(address=>mapping(string=>uint256)) propertyTable;
+    mapping(address=>uint256) CashTable;
     /*This section for issue and remove stocks*/
     /***
     TO DO: only verified company can issue stocks (whitelist)
     ***/
-    function addStocks(string memory _stockName) public returns(bool){
+    function addStocks(string memory _stockName) internal returns(bool){
         bool _exist; 
         uint256 _t;
+        require(num_stock<MAX_STOCK, "Too many stocks");
         (_exist, _t) =  checkStockInMarket(_stockName);            
         require(!_exist, "stock already in market");          //check if name repeat
         stockTable[num_stock] = _stockName;
@@ -38,6 +40,20 @@ contract orderBook {
         bestOrders[_stockName] = [MAX_ORDER,MAX_ORDER];
         return true;
     } 
+    
+    //can move to a sub contract
+    event StockIssue(string _stockName, uint256 volumn, uint256 price);
+    function issueStock(string memory _stockName, uint256 volumn, uint256 price)public returns(bool){
+        //require(inWhiteList(msg.sender));
+        require( addStocks(_stockName), "Add stock failed");
+        propertyTable[msg.sender][_stockName] = volumn;
+        saveOrder(Order.Types.sell, _stockName,volumn, Order.MatchTypes.lmt,  price);
+        emit StockIssue(_stockName, volumn, price);
+        return true;
+    }
+
+    //function reteatStock(string memory )
+
     //check the best buy/sell order for stock 
     function checkBestOrders(string memory stock) public view returns(uint256, uint256){   
         return (bestOrders[stock][0],bestOrders[stock][1]);
@@ -160,8 +176,12 @@ contract orderBook {
     function getOrderData(uint256 _orderId) public view returns( Order.Data memory){
         return orders[_orderId];
     }
+    
     function getOrderCreator(uint256 _orderId) internal view returns(address){
         return getOrderData(_orderId).creator;
+    }
+    function getOrderStock(uint256 _orderId) internal view returns(string memory){
+        return getOrderData(_orderId).stock;
     }
     function getOrderPrice(uint256 _orderId) internal view returns(uint256){
         return getOrderData(_orderId).price;
@@ -172,6 +192,7 @@ contract orderBook {
     function getOrderMatchType(uint256 _orderId) internal view returns(uint256){
         return uint256(getOrderData(_orderId).matchtype);
     }
+    
     //abandoned orderId method should remove
     function getOrderId( address creator,Order.Types typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price, uint createtime) public view returns(bytes32){
         return sha256(abi.encodePacked(creator, typ, stock, volumn, matchtype, price,createtime));
@@ -197,6 +218,20 @@ contract orderBook {
 
     //orders form a linked list by _order.better _order.worse
     //create order globally
+    
+    function ModifyStockBalance(address user,  Order.Types typ, uint256 OrderId) public returns(bool){
+        // if seller
+        if(typ == Order.Types.sell){
+            require(propertyTable[user][getOrderStock(OrderId)]>getOrderVolume(OrderId), "Not enough stock to sell");
+            propertyTable[user][getOrderStock(OrderId)]-=getOrderVolume(OrderId); 
+        }
+        if(typ == Order.Types.buy){
+            require(CashTable[user]>getOrderVolume(OrderId)*getOrderPrice(OrderId), "Not enough stock to buy");
+            CashTable[user]-=getOrderVolume(OrderId)*getOrderPrice(OrderId);
+        }
+        return true;
+    }
+
     function saveOrder(Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(bool){
         //uint256 _orderId  = getOrderId(creator, typ, stock, volumn, matchtype, price, now);
         uint256 _typ = uint256(typ);
@@ -260,7 +295,7 @@ contract orderBook {
             return true;
         }
     }
-
+    
     //helper for remove order from link list
     function breakLink(uint256 _orderId,  uint256 _typ) public returns(bool){
         Order.Data memory _data= getOrderData(_orderId);
@@ -379,7 +414,7 @@ contract orderBook {
                 return (prev_id, cur_id);
         }
     }
-    /*
+    
     event fillOrderInfo(uint256 ordreId, bool complete);
     //not finished 
     
@@ -431,7 +466,7 @@ contract orderBook {
         }
 
     }
-    */
+    
     //fill ask Order
     event askOrderRes(string stock , uint256 p_b,uint256 v_b,uint256 p_s,uint256 v_s  );
     function fillAskOrder(string memory stock) public returns(bool){//, uint256 volumn
