@@ -3,14 +3,18 @@ pragma experimental ABIEncoderV2;
 
 import "./order.sol";
 
+//TODO: clean up data structure
+// array(for get data) + mapping(exist) + mapping(function)
 contract orderBook {
     uint256 constant MAX_STOCK = 99999; //max number of stock that can be stored in this orderbook 
     uint256 constant MAX_ORDER = 99999; //max number of unfilled order ...
-    
+    address[] UserList;
+    mapping(address => string) Alias; 
+    address admin; 
     uint256[][2] id_array;                      //store all the unfilled orderIds 
                                                 //split to index 0:buy 1:sell
 
-    mapping(uint256 => Order.Data) private orders; // array of orders storing data
+    mapping(uint256 => Order.Data) private orders; // array of orders storing data 
 
     mapping(string => uint256) completeData;        //for future use record order have been filled
 
@@ -22,9 +26,89 @@ contract orderBook {
 
     uint256[] Idvacancy;                            // tracker for assigning orderIds          
     uint256 nextAvl = 0; 
-
+    mapping(address=> uint256) propertyNum;
     mapping(address=>mapping(string=>uint256)) propertyTable;
     mapping(address=>uint256) CashTable;
+
+    constructor() {
+        admin = msg.sender;
+    }
+
+
+    function getProperty(address user) public view returns( uint256, string[] memory, uint256[] memory ){
+        bool _e;
+        uint256 _t; 
+        (_e,_t) = checkUserExist(user);
+        require(_e, "user Not registered");
+        require(num_stock>0, "no stock in market");
+        uint256 num = 0;
+        for(uint256 i=0; i< num_stock; i++){
+            if(propertyTable[user][stockTable[i]]>0){
+                num++;
+            }
+        }    
+        string[] memory _s = new string[](num); 
+        uint256[] memory _v = new uint256[](num); 
+        uint256 index = 0;
+        for(uint256 i=0; i< num_stock; i++){
+            if(propertyTable[user][stockTable[i]]>0){
+                _s[index] = stockTable[i];
+                _v[index] = propertyTable[user][stockTable[i]];
+                index ++;
+            }
+        }  
+        
+        return (num, _s, _v);
+    }
+    event reg_message(address addr , string Alias);
+    function userRegister(string memory ali) public{
+        address addr = msg.sender;
+        require(addr != admin, "Admin address");
+        bool _e;
+        uint256 index; 
+        (_e, index) = checkUserExist(addr); 
+        if(!_e){
+            UserList.push(addr);
+            CashTable[addr] = addr.balance;  
+            Alias[addr] = ali;
+            emit reg_message(addr, Alias[addr]);
+        }
+    }
+
+    function checkUserExist(address addr) internal view returns(bool, uint256){
+        for(uint256 i =0 ; i<UserList.length; i++){
+            if (addr == UserList[i]){
+                return (true, i);
+            }
+        }
+        return (false, MAX_ORDER);
+    }
+
+    function removeUser(address addr) public{
+        require(msg.sender == admin,"Caller must be admin");
+        bool _e;
+        uint256 index; 
+        (_e, index) = checkUserExist(addr);
+        require(_e, "addr not exist");
+        //delete propertyTable[addr];
+        delete CashTable[addr];
+        
+        for(uint256 i = 0; i<=1; i++){
+            while(creatorTable[addr][i].length>0){
+                removeOrder(creatorTable[addr][i][0]);
+            }
+        }
+        UserList[index] = UserList[UserList.length-1];
+        UserList.pop();
+    }
+
+    function getUsers() public view returns(address[] memory, string[] memory){
+        string[] memory Ali = new string[](UserList.length);
+        for(uint256 i = 0 ; i<UserList.length; i++){
+            Ali[i] = Alias[UserList[i]];
+        }
+        return (UserList, Ali);
+    }
     /*This section for issue and remove stocks*/
     /***
     TO DO: only verified company can issue stocks (whitelist)
@@ -47,6 +131,7 @@ contract orderBook {
         //require(inWhiteList(msg.sender));
         require( addStocks(_stockName), "Add stock failed");
         propertyTable[msg.sender][_stockName] = volumn;
+        propertyNum[msg.sender]+=1; 
         saveOrder(Order.Types.sell, _stockName,volumn, Order.MatchTypes.lmt,  price);
         emit StockIssue(_stockName, volumn, price);
         return true;
@@ -59,7 +144,7 @@ contract orderBook {
         return (bestOrders[stock][0],bestOrders[stock][1]);
     }
     //for debugging can remove
-    function getNumStocks() public view returns(uint256){
+    function getNumStocks() internal view returns(uint256){
         return num_stock;
     }
     //check if stock exist, can be internal 
@@ -95,17 +180,17 @@ contract orderBook {
 
     /*This section store orderId to user*/
 
-    function userOrderNum(address _addr) public view returns(uint256, uint256){
-        return (creatorTable[_addr][0].length,creatorTable[_addr][1].length) ;
+    function userOrders(address _addr) public view returns(uint256[] memory, uint256[] memory){
+        return (creatorTable[_addr][0],creatorTable[_addr][1]) ;
     }
 
-    function addOrderToUser(address _addr, Order.Types _typ, uint256 _orderId) public returns(bool){
+    function addOrderToUser(address _addr, Order.Types _typ, uint256 _orderId) internal returns(bool){
         uint256 _typ_int = uint256(_typ);
-        require(_typ_int <2, "Ask not store");
+        require(_typ_int<2, "Ask not store");
         creatorTable[_addr][_typ_int].push(_orderId);
         return true;
     }
-    function findOrderinUser(address _addr, Order.Types _typ, uint256 _orderId) public view returns(bool, uint){
+    function findOrderinUser(address _addr, Order.Types _typ, uint256 _orderId) internal view returns(bool, uint){
         uint256 _typ_int = uint256(_typ);
         require(_typ_int <2, "Ask not store");
         for(uint i = 0; i< creatorTable[_addr][_typ_int].length; i++){
@@ -116,7 +201,7 @@ contract orderBook {
         return (false, MAX_ORDER);
     }
 
-    function removeOrderFromUser(address _addr,Order.Types _typ,  uint256 _orderId) public returns(bool){
+    function removeOrderFromUser(address _addr,Order.Types _typ,  uint256 _orderId) internal returns(bool){
         uint256 _typ_int = uint256(_typ);
         require(_typ_int <2, "Ask not store");
         bool _exist;
@@ -132,7 +217,7 @@ contract orderBook {
 
     /*This section assign orderID to Stock*/
 
-    function addOrderToStock(string memory stockName,Order.Types _typ, uint256 _orderId) public returns(bool){
+    function addOrderToStock(string memory stockName,Order.Types _typ, uint256 _orderId) internal returns(bool){
         uint256 _typ_int = uint256(_typ);
         require(_typ_int<2, "Ask not store");
         bool _exist;
@@ -143,7 +228,7 @@ contract orderBook {
         return true;
     }
 
-    function checkStockHaveOrder(string memory stockName,Order.Types _typ, uint256 _orderId) public view returns(bool, uint256){
+    function checkStockHaveOrder(string memory stockName,Order.Types _typ, uint256 _orderId) internal view returns(bool, uint256){
         uint256 _typ_int = uint256(_typ);
         require(_typ_int<2, "Ask not store");
         for(uint256 i =0; i<stockOrder[stockName][_typ_int].length;i++){
@@ -154,7 +239,7 @@ contract orderBook {
         return (false,MAX_ORDER);
     }
 
-    function removeOrderFromStock(string memory stockName,Order.Types _typ, uint256 _orderId) public returns(bool){
+    function removeOrderFromStock(string memory stockName,Order.Types _typ, uint256 _orderId) internal returns(bool){
         uint256 _typ_int = uint256(_typ);
         require(_typ_int<2, "Ask not store");
         bool _exist;
@@ -167,13 +252,13 @@ contract orderBook {
         }
         return false;
     }
-    function getStockOrderNum(string memory stockName) public view returns(uint256, uint256){
-        return (stockOrder[stockName][0].length,stockOrder[stockName][1].length);
+    function getStockOrders(string memory stockName) public view returns(uint256[] memory, uint256[] memory){
+        return (stockOrder[stockName][0],stockOrder[stockName][1]);
     }
 
     
     /*some look up functions*/ 
-    function getOrderData(uint256 _orderId) public view returns( Order.Data memory){
+    function getOrderData(uint256 _orderId) public view returns(Order.Data memory){
         return orders[_orderId];
     }
     
@@ -194,12 +279,12 @@ contract orderBook {
     }
     
     //abandoned orderId method should remove
-    function getOrderId( address creator,Order.Types typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price, uint createtime) public view returns(bytes32){
+    function getOrderId( address creator,Order.Types typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price, uint createtime) internal view returns(bytes32){
         return sha256(abi.encodePacked(creator, typ, stock, volumn, matchtype, price,createtime));
     }
 
     //for assigning unique orderId to each new buy/sell order
-    function assignOrderId() public returns (uint256){
+    function assignOrderId() internal returns (uint256){
         if(Idvacancy.length>0){
             uint256 id = Idvacancy[Idvacancy.length-1];
             Idvacancy.pop();
@@ -212,28 +297,39 @@ contract orderBook {
     }
 
     //some events print out for logging 
-    event savedOrderInfo(uint256 _orderId, string stockName, uint256 price);
+    event savedOrderInfo(uint256 _orderId, string stockName, Order.Types Types,  uint256 price, Order.MatchTypes matchtype);
     event message(string msg);
     event b_w(uint256 better, uint256 worse);
 
     //orders form a linked list by _order.better _order.worse
     //create order globally
+    /*
+    function getBalance(address user) public view returns(uint256 , string[] memory, uint256[] memory){
+        Property _p= propertyTable[user];
+        string[] memory _s;
+        uint256[] memory _v; 
+        (_s, _v) = _p.printProperty();
+        return (CashTable[user], _s, _v);
     
-    function ModifyStockBalance(address user,  Order.Types typ, uint256 OrderId) public returns(bool){
-        // if seller
+    }
+    */
+    function ModifyStockBalance(address user,  Order.Types typ, uint256 OrderId) public{
         if(typ == Order.Types.sell){
-            require(propertyTable[user][getOrderStock(OrderId)]>getOrderVolume(OrderId), "Not enough stock to sell");
-            propertyTable[user][getOrderStock(OrderId)]-=getOrderVolume(OrderId); 
+            require(propertyTable[user][getOrderStock(OrderId)]>= getOrderVolume(OrderId), "Not enough stock to sell");
+            propertyTable[user][getOrderStock(OrderId)]-=getOrderVolume(OrderId);
         }
         if(typ == Order.Types.buy){
             require(CashTable[user]>getOrderVolume(OrderId)*getOrderPrice(OrderId), "Not enough stock to buy");
             CashTable[user]-=getOrderVolume(OrderId)*getOrderPrice(OrderId);
         }
-        return true;
     }
 
     function saveOrder(Order.Types  typ, string memory stock, uint256 volumn,Order.MatchTypes  matchtype, uint256 price) public returns(bool){
         //uint256 _orderId  = getOrderId(creator, typ, stock, volumn, matchtype, price, now);
+        bool _e; 
+        uint256 _i;
+        (_e,_i) = checkUserExist( msg.sender);
+        require(_e, "User not registered"); 
         uint256 _typ = uint256(typ);
         if (_typ<2){      //save if buy/sell, fill if ask   
             //check condition commented out for debugging convinience
@@ -287,7 +383,7 @@ contract orderBook {
             id_array[_typ].push(_orderId);
             addOrderToUser(msg.sender, typ, _orderId);
             addOrderToStock(stock, typ,  _orderId);
-            emit savedOrderInfo( _orderId, stock, price);
+            emit savedOrderInfo( _orderId, stock,typ, price, matchtype);
             return true;
         }
         else{
@@ -297,7 +393,7 @@ contract orderBook {
     }
     
     //helper for remove order from link list
-    function breakLink(uint256 _orderId,  uint256 _typ) public returns(bool){
+    function breakLink(uint256 _orderId,  uint256 _typ) internal returns(bool){
         Order.Data memory _data= getOrderData(_orderId);
         uint256 better = _data.betterOrder;
         uint256 worse = _data.worseOrder;
@@ -336,8 +432,8 @@ contract orderBook {
         emit removedOrderInfo(_orderId, _data.creator, _data.stock, _data.typ, _data.price );
         return true;
     }
-
-    function checkOrderExist(uint256 _orderId) public view returns(bool, uint256){
+    //TODO: remove ID_array 
+    function checkOrderExist(uint256 _orderId) internal view returns(bool, uint256){
         Order.Data memory _data = getOrderData(_orderId);
         uint256 _typ = uint256(_data.typ);
         require(_typ != 2, "ask order is not stored");
@@ -349,7 +445,7 @@ contract orderBook {
         return (false, MAX_ORDER);
     }
     //remove helper
-    function removeFromIdArray(uint256 _orderId) public returns(bool){
+    function removeFromIdArray(uint256 _orderId) internal returns(bool){
         bool _exist;
         uint256 index;
         Order.Data memory _data = getOrderData(_orderId);
@@ -363,7 +459,7 @@ contract orderBook {
         }
         return false;
     }
-    function getArraylength() public view returns(uint, uint){
+    function getArraylength() internal view returns(uint, uint){
         return (id_array[0].length, id_array[1].length);
     }
 
@@ -417,7 +513,7 @@ contract orderBook {
     
     event fillOrderInfo(uint256 ordreId, bool complete);
     //not finished 
-    
+    /*
     function transfer(address payable seller, address buyer, string memory stock, uint256 price, uint256 volumn) public payable returns(bool){
         uint256 fund = price*volumn;
         require(propertyTable[seller][stock]>volumn, "seller don't have enough stock to sell"); //should check earlier
@@ -466,7 +562,7 @@ contract orderBook {
         }
 
     }
-    
+    */
     //fill ask Order
     event askOrderRes(string stock , uint256 p_b,uint256 v_b,uint256 p_s,uint256 v_s  );
     function fillAskOrder(string memory stock) public returns(bool){//, uint256 volumn
