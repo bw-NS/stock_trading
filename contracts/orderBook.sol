@@ -30,7 +30,7 @@ contract orderBook {
     mapping(address=>mapping(string=>uint256)) propertyTable;
     mapping(address=>uint256) CashTable;
 
-    constructor() {
+    constructor() public{
         admin = msg.sender;
     }
 
