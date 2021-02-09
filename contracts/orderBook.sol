@@ -8,6 +8,7 @@ import "./order.sol";
 contract orderBook {
     uint256 constant MAX_STOCK = 99999; //max number of stock that can be stored in this orderbook 
     uint256 constant MAX_ORDER = 99999; //max number of unfilled order ...
+    uint256 constant PRICE_PER_TOKEN =1 ether;
     address[] UserList;
     mapping(address => string) Alias; 
     address admin; 
@@ -69,7 +70,7 @@ contract orderBook {
         (_e, index) = checkUserExist(addr); 
         if(!_e){
             UserList.push(addr);
-            CashTable[addr] = addr.balance;  
+            CashTable[addr] = 0;  
             Alias[addr] = ali;
             emit reg_message(addr, Alias[addr]);
         }
@@ -109,6 +110,32 @@ contract orderBook {
         }
         return (UserList, Ali);
     }
+    event user_deposite(string user, uint256 value, uint256 balance);
+    function deposite(uint256 numTokens) public payable {
+        bool _e;
+        uint256 number; 
+        (_e, number) = checkUserExist(msg.sender);
+        require(_e, "user not exist"); 
+        require(msg.value>0, "value must be positive");
+        require(msg.value == numTokens * PRICE_PER_TOKEN);
+        CashTable[msg.sender] += numTokens;
+        emit user_deposite(Alias[msg.sender], numTokens, CashTable[msg.sender]); 
+    }
+    event user_withdraw(string user, uint256 value, uint256 balance);
+    function withdraw(uint256 amount) public {
+        bool _e;
+        uint256 number; 
+        (_e, number) = checkUserExist(msg.sender);
+        require(_e, "user not exist"); 
+        require(amount <= CashTable[msg.sender], "not enough balance");
+        CashTable[msg.sender] -= amount;
+        payable(msg.sender).transfer(amount*PRICE_PER_TOKEN);
+        user_withdraw(Alias[msg.sender], amount, CashTable[msg.sender]);
+    }
+    function getBalance(address user) public view returns(uint256){
+        return CashTable[user];
+    }
+
     /*This section for issue and remove stocks*/
     /***
     TO DO: only verified company can issue stocks (whitelist)
@@ -513,56 +540,160 @@ contract orderBook {
     
     event fillOrderInfo(uint256 ordreId, bool complete);
     //not finished 
-    /*
-    function transfer(address payable seller, address buyer, string memory stock, uint256 price, uint256 volumn) public payable returns(bool){
+    
+    function transfer(address seller, address buyer, string memory stock, uint256 price, uint256 volumn) public payable returns(bool){
         uint256 fund = price*volumn;
-        require(propertyTable[seller][stock]>volumn, "seller don't have enough stock to sell"); //should check earlier
-        require(buyer.balance>fund, "buyer don't have enough fund");
-        seller.transfer(fund); // critical how to make buyer send the money?????????
+        require(propertyTable[seller][stock]>=volumn, "seller don't have enough stock to sell"); //should check earlier
+        require(CashTable[buyer]>=fund, "buyer don't have enough fund");
+        CashTable[buyer]-=fund;
+        CashTable[seller]+=fund;
         propertyTable[seller][stock]+=volumn;
+        propertyTable[buyer][stock]-=volumn;
         return true;
     }
 
-    //not finished
-
-    function fillOrder() public returns(bool){
-        for(uint256 i =0; i< num_stock; i++){
-            string memory stockName = stockTable[i];
-            uint256 bestbuy = bestOrders[stockName][0];
-            uint256 bestsell = bestOrders[stockName][1];
-            while(getOrderPrice(bestbuy)>=getOrderPrice(bestsell)){
-                if(getOrderVolume(bestbuy)<getOrderVolume(bestsell)){
-                    uint256 remaindar = getOrderVolume(bestsell) - getOrderVolume(bestbuy);
-                    orders[bestsell].volumn = remaindar;
-                    removeOrder(bestbuy);
-                    emit fillOrderInfo(bestbuy, true);
-                    emit fillOrderInfo(bestsell, false);
-                }
-                else{
-                    if(getOrderVolume(bestbuy)==getOrderVolume(bestsell)){
-                    removeOrder(bestbuy);
-                    removeOrder(bestsell);
-                    emit fillOrderInfo(bestbuy, true);
-                    emit fillOrderInfo(bestsell, true);
+    //run when order is created 
+    event orderfilled(uint256 orderID, address buyer, address seller, string stock, uint256 price, uint256 volumn);
+    function fillOrder(address owner, string memory stock, Order.Types typ, Order.MatchTypes matchtype, uint256 price, uint256 volumn) public returns(bool, uint256){
+        if(matchtype == Order.MatchTypes.imme){
+            if(typ == Order.Types.buy){
+                bool matchnext = true;
+                while(matchnext){
+                    uint256 bestsell = bestOrders[stock][1];
+                    if(bestsell == MAX_ORDER) return (false, volumn);
+                    uint256 m_v= getOrderVolume(bestsell);
+                    uint256 m_price = getOrderPrice(bestsell);
+                    address seller = getOrderCreator(bestsell);
+                    if(m_v<volumn){
+                        volumn -= getOrderVolume(bestsell);
+                        transfer(seller, owner , stock, m_price, m_v);
+                        removeOrder(bestsell);
+                        emit orderfilled(bestsell, owner, seller, stock, m_price, m_v);
                     }
                     else{
-                        uint256 remaindar = getOrderVolume(bestbuy) - getOrderVolume(bestsell);
-                        orders[bestbuy].volumn = remaindar;
-                        removeOrder(bestbuy);
-                        emit fillOrderInfo(bestbuy, false);
-                        emit fillOrderInfo(bestsell, true);
-                        
+                        matchnext = false; 
+                        if(m_v == volumn){
+                            transfer(seller, owner , stock, m_price, volumn);
+                            removeOrder(bestsell);
+                            emit orderfilled(bestsell, owner, seller, stock, m_price, volumn);
+                            return (true, 0);
+                        }
+                        else{
+                            transfer(seller, owner , stock, m_price, volumn);
+                            orders[bestsell].volumn = m_v - volumn; 
+                            emit orderfilled(bestsell, owner, seller, stock, m_price, volumn);
+                            return (true, 0);
+                        }
                     }
-                    
                 }
-            bestbuy = bestOrders[stockName][0];
-            bestsell = bestOrders[stockName][1];
+                return (false, volumn);
             }
-        
+            if(typ == Order.Types.sell){
+                bool matchnext = true;
+                while(matchnext){
+                    uint256 bestbuy = bestOrders[stock][0];
+                    if(bestbuy == MAX_ORDER) return (false, volumn);
+                    uint256 m_v= getOrderVolume(bestbuy);
+                    uint256 m_price = getOrderPrice(bestbuy);
+                    address buyer = getOrderCreator(bestbuy);
+                    if(m_v<volumn){
+                        volumn -= getOrderVolume(bestbuy);
+                        transfer(owner, buyer, stock, m_price, m_v);
+                        removeOrder(bestbuy);
+                        emit orderfilled(bestbuy, buyer, owner, stock, m_price, m_v);
+                    }
+                    else{
+                        matchnext = false; 
+                        if(m_v == volumn){
+                            transfer(owner, buyer , stock, m_price, volumn);
+                            removeOrder(bestbuy);
+                            emit orderfilled(bestbuy, buyer, owner, stock, m_price, volumn);
+                            return (true, 0);
+                        }
+                        else{
+                            transfer( owner, buyer , stock, m_price, volumn);
+                            orders[bestbuy].volumn = m_v - volumn; 
+                            emit orderfilled(bestbuy, buyer, owner, stock, m_price, volumn);
+                            return (true, 0);
+                        }
+                    }
+                
+                }
+                return(false, volumn);
+            }
         }
-
+        if(matchtype == Order.MatchTypes.lmt){ // lmt price
+            if(typ == Order.Types.buy){
+                bool matchnext = true;
+                while(matchnext){
+                    uint256 bestsell = bestOrders[stock][1];
+                    if(bestsell == MAX_ORDER) return (false, volumn);
+                    uint256 m_v = getOrderVolume(bestsell);
+                    uint256 m_price = getOrderPrice(bestsell);
+                    address seller = getOrderCreator(bestsell);
+                    if(m_price > price) return(false, volumn);
+                    if(m_v<volumn){
+                        volumn -= getOrderVolume(bestsell);
+                        
+                        transfer(seller, owner , stock, m_price, m_v);
+                        removeOrder(bestsell);
+                        emit orderfilled(bestsell, owner, seller, stock, m_price, m_v);
+                    }
+                    else{
+                        matchnext = false; 
+                        if(m_v == volumn ){
+                            transfer(seller, owner , stock, price, volumn);
+                            removeOrder(bestsell);
+                            emit orderfilled(bestsell, owner, seller, stock, price, volumn);
+                            return (true, 0);
+                        }
+                        else{
+                            transfer(seller, owner , stock, price, volumn);
+                            orders[bestsell].volumn = m_v - volumn; 
+                            emit orderfilled(bestsell, owner, seller, stock, price, volumn);
+                            return (true, 0);
+                        }
+                    }
+                }
+                return (false, volumn); 
+            }
+            
+            if(typ == Order.Types.sell){
+                bool matchnext = true;
+                while(matchnext){
+                    uint256 bestbuy = bestOrders[stock][0];
+                    if(bestbuy == MAX_ORDER) return (false, volumn);
+                    uint256 m_v= getOrderVolume(bestbuy);
+                    uint256 m_price = getOrderPrice(bestbuy);
+                    address buyer = getOrderCreator(bestbuy);
+                    if(m_price < price) return (false, volumn);
+                    if(m_v<volumn){
+                        volumn -= getOrderVolume(bestbuy);
+                        
+                        transfer(owner, buyer, stock, price, m_v);
+                        removeOrder(bestbuy);
+                        emit orderfilled(bestbuy, buyer, owner, stock, price, m_v);
+                    }
+                    else{
+                        matchnext = false; 
+                        if(m_v == volumn){
+                            transfer(owner, buyer , stock, price, m_v);
+                            removeOrder(bestbuy);
+                            emit orderfilled(bestbuy, buyer, owner, stock, price, volumn);
+                            return (true, 0);
+                        }
+                        else{
+                            transfer(owner, buyer , stock, price, volumn);
+                            orders[bestbuy].volumn = m_v - volumn; 
+                            emit orderfilled(bestbuy, buyer, owner, stock, price, volumn);
+                            return (true, 0);
+                        }
+                    }
+                }
+                return (false, volumn);
+            }
+        }
     }
-    */
     //fill ask Order
     event askOrderRes(string stock , uint256 p_b,uint256 v_b,uint256 p_s,uint256 v_s  );
     function fillAskOrder(string memory stock) public returns(bool){//, uint256 volumn
