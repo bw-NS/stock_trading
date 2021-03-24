@@ -1,8 +1,8 @@
-const ConvertLib = artifacts.require("ConvertLib");
-const MetaCoin = artifacts.require("MetaCoin");
+const order = artifacts.require("order");
+const orderBook = artifacts.require("orderBook");
 
 module.exports = function(deployer) {
-  deployer.deploy(ConvertLib);
-  deployer.link(ConvertLib, MetaCoin);
-  deployer.deploy(MetaCoin);
+  deployer.deploy(order);
+  deployer.link(order, orderBook);
+  deployer.deploy(orderBook);
 };

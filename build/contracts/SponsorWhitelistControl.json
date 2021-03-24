@@ -2,6 +2,7 @@
   "contractName": "SponsorWhitelistControl",
   "abi": [
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -17,10 +18,12 @@
           "type": "address"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -36,10 +39,12 @@
           "type": "uint256"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -55,10 +60,12 @@
           "type": "uint256"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -74,10 +81,12 @@
           "type": "address"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -93,10 +102,12 @@
           "type": "uint256"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -117,10 +128,12 @@
           "type": "bool"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -136,10 +149,12 @@
           "type": "bool"
         }
       ],
+      "payable": false,
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address",
@@ -154,10 +169,12 @@
       ],
       "name": "addPrivilegeByAdmin",
       "outputs": [],
+      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address",
@@ -172,10 +189,12 @@
       ],
       "name": "removePrivilegeByAdmin",
       "outputs": [],
+      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address",
@@ -190,10 +209,12 @@
       ],
       "name": "setSponsorForGas",
       "outputs": [],
+      "payable": true,
       "stateMutability": "payable",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address",
@@ -203,10 +224,12 @@
       ],
       "name": "setSponsorForCollateral",
       "outputs": [],
+      "payable": true,
       "stateMutability": "payable",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address[]",
@@ -216,10 +239,12 @@
       ],
       "name": "addPrivilege",
       "outputs": [],
+      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
           "internalType": "address[]",
@@ -229,30 +254,30 @@
       ],
       "name": "removePrivilege",
       "outputs": [],
+      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"name\":\"addPrivilege\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"addPrivilegeByAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsorForCollateral\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsorForGas\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredBalanceForCollateral\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredBalanceForGas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredGasFeeUpperBound\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"isAllWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"name\":\"removePrivilege\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"removePrivilegeByAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"setSponsorForCollateral\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"upperBound\",\"type\":\"uint256\"}],\"name\":\"setSponsorForGas\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"addPrivilegeByAdmin(address,address[])\":{\"details\":\"contract admin add user to whitelist\",\"params\":{\"addresses\":\"The user address array\",\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsorForCollateral(address)\":{\"details\":\"get collateral sponsor address\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsorForGas(address)\":{\"details\":\"get gas sponsor address of specific contract\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredBalanceForCollateral(address)\":{\"details\":\"get current Sponsored Balance for collateral\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredBalanceForGas(address)\":{\"details\":\"get current Sponsored Balance for gas\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredGasFeeUpperBound(address)\":{\"details\":\"get current Sponsored Gas fee upper bound\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"isAllWhitelisted(address)\":{\"details\":\"check if all users are in a contract's whitelist\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"isWhitelisted(address,address)\":{\"details\":\"check if a user is in a contract's whitelist\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\",\"user\":\"The address of contract user\"}},\"removePrivilegeByAdmin(address,address[])\":{\"details\":\"contract admin remove user from whitelist\",\"params\":{\"addresses\":\"The user address array\",\"contractAddr\":\"The address of the sponsored contract\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/c/Users/bowen/Documents/UofT/4th_year_lec/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol\":\"SponsorWhitelistControl\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/c/Users/bowen/Documents/UofT/4th_year_lec/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol\":{\"keccak256\":\"0xdcb0c72dcfb6ab3f0bd4e8d63d60b3f65b53a88a7e2ac07afdb9cf93f46eec26\",\"urls\":[\"bzz-raw://e9c14bce5a5ee71633be654ca0ef2505c3894e0fc364b4f891a005a319022a21\",\"dweb:/ipfs/QmTyrVKBBMdgDm8sq2xepFyA95SjsEyLGdf98kKw7VxcuJ\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610741806100206000396000f3fe6080604052600436106100c25760003560e01c80638382c3a71161007f578063d2932db611610059578063d2932db61461028f578063d47e9a57146102b8578063d665f9dd146102f5578063e66c1bea14610332576100c2565b80638382c3a7146101d8578063b3b28fac14610215578063b6b3527214610252576100c2565b806310128d3e146100c7578063217e055b146100f057806322effe841461011957806333a1af31146101425780633e3e64281461017f57806379b47faa1461019b575b600080fd5b3480156100d357600080fd5b506100ee60048036038101906100e9919061054a565b61034e565b005b3480156100fc57600080fd5b50610117600480360381019061011291906104ba565b610351565b005b34801561012557600080fd5b50610140600480360381019061013b91906104ba565b610355565b005b34801561014e57600080fd5b5061016960048036038101906101649190610455565b610359565b60405161017691906105b8565b60405180910390f35b6101996004803603810190610194919061050e565b610360565b005b3480156101a757600080fd5b506101c260048036038101906101bd9190610455565b610364565b6040516101cf91906105d3565b60405180910390f35b3480156101e457600080fd5b506101ff60048036038101906101fa9190610455565b61036b565b60405161020c91906105b8565b60405180910390f35b34801561022157600080fd5b5061023c60048036038101906102379190610455565b610372565b60405161024991906105ee565b60405180910390f35b34801561025e57600080fd5b506102796004803603810190610274919061047e565b610379565b60405161028691906105d3565b60405180910390f35b34801561029b57600080fd5b506102b660048036038101906102b1919061054a565b610381565b005b3480156102c457600080fd5b506102df60048036038101906102da9190610455565b610384565b6040516102ec91906105ee565b60405180910390f35b34801561030157600080fd5b5061031c60048036038101906103179190610455565b61038b565b60405161032991906105ee565b60405180910390f35b61034c60048036038101906103479190610455565b610392565b005b50565b5050565b5050565b6000919050565b5050565b6000919050565b6000919050565b6000919050565b600092915050565b50565b6000919050565b6000919050565b50565b60006103a86103a38461063a565b610609565b905080838252602082019050828560208602820111156103c757600080fd5b60005b858110156103f757816103dd8882610401565b8452602084019350602083019250506001810190506103ca565b5050509392505050565b600081359050610410816106dd565b92915050565b600082601f83011261042757600080fd5b8135610437848260208601610395565b91505092915050565b60008135905061044f816106f4565b92915050565b60006020828403121561046757600080fd5b600061047584828501610401565b91505092915050565b6000806040838503121561049157600080fd5b600061049f85828601610401565b92505060206104b085828601610401565b9150509250929050565b600080604083850312156104cd57600080fd5b60006104db85828601610401565b925050602083013567ffffffffffffffff8111156104f857600080fd5b61050485828601610416565b9150509250929050565b6000806040838503121561052157600080fd5b600061052f85828601610401565b925050602061054085828601610440565b9150509250929050565b60006020828403121561055c57600080fd5b600082013567ffffffffffffffff81111561057657600080fd5b61058284828501610416565b91505092915050565b61059481610666565b82525050565b6105a381610678565b82525050565b6105b2816106a4565b82525050565b60006020820190506105cd600083018461058b565b92915050565b60006020820190506105e8600083018461059a565b92915050565b600060208201905061060360008301846105a9565b92915050565b6000604051905081810181811067ffffffffffffffff821117156106305761062f6106ae565b5b8060405250919050565b600067ffffffffffffffff821115610655576106546106ae565b5b602082029050602081019050919050565b600061067182610684565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6106e681610666565b81146106f157600080fd5b50565b6106fd816106a4565b811461070857600080fd5b5056fea26469706673582212206f37aef090375587868146e414277f99b28a66630e6287d64f2805bceb191d0364736f6c63430008000033",
-  "deployedBytecode": "0x6080604052600436106100c25760003560e01c80638382c3a71161007f578063d2932db611610059578063d2932db61461028f578063d47e9a57146102b8578063d665f9dd146102f5578063e66c1bea14610332576100c2565b80638382c3a7146101d8578063b3b28fac14610215578063b6b3527214610252576100c2565b806310128d3e146100c7578063217e055b146100f057806322effe841461011957806333a1af31146101425780633e3e64281461017f57806379b47faa1461019b575b600080fd5b3480156100d357600080fd5b506100ee60048036038101906100e9919061054a565b61034e565b005b3480156100fc57600080fd5b50610117600480360381019061011291906104ba565b610351565b005b34801561012557600080fd5b50610140600480360381019061013b91906104ba565b610355565b005b34801561014e57600080fd5b5061016960048036038101906101649190610455565b610359565b60405161017691906105b8565b60405180910390f35b6101996004803603810190610194919061050e565b610360565b005b3480156101a757600080fd5b506101c260048036038101906101bd9190610455565b610364565b6040516101cf91906105d3565b60405180910390f35b3480156101e457600080fd5b506101ff60048036038101906101fa9190610455565b61036b565b60405161020c91906105b8565b60405180910390f35b34801561022157600080fd5b5061023c60048036038101906102379190610455565b610372565b60405161024991906105ee565b60405180910390f35b34801561025e57600080fd5b506102796004803603810190610274919061047e565b610379565b60405161028691906105d3565b60405180910390f35b34801561029b57600080fd5b506102b660048036038101906102b1919061054a565b610381565b005b3480156102c457600080fd5b506102df60048036038101906102da9190610455565b610384565b6040516102ec91906105ee565b60405180910390f35b34801561030157600080fd5b5061031c60048036038101906103179190610455565b61038b565b60405161032991906105ee565b60405180910390f35b61034c60048036038101906103479190610455565b610392565b005b50565b5050565b5050565b6000919050565b5050565b6000919050565b6000919050565b6000919050565b600092915050565b50565b6000919050565b6000919050565b50565b60006103a86103a38461063a565b610609565b905080838252602082019050828560208602820111156103c757600080fd5b60005b858110156103f757816103dd8882610401565b8452602084019350602083019250506001810190506103ca565b5050509392505050565b600081359050610410816106dd565b92915050565b600082601f83011261042757600080fd5b8135610437848260208601610395565b91505092915050565b60008135905061044f816106f4565b92915050565b60006020828403121561046757600080fd5b600061047584828501610401565b91505092915050565b6000806040838503121561049157600080fd5b600061049f85828601610401565b92505060206104b085828601610401565b9150509250929050565b600080604083850312156104cd57600080fd5b60006104db85828601610401565b925050602083013567ffffffffffffffff8111156104f857600080fd5b61050485828601610416565b9150509250929050565b6000806040838503121561052157600080fd5b600061052f85828601610401565b925050602061054085828601610440565b9150509250929050565b60006020828403121561055c57600080fd5b600082013567ffffffffffffffff81111561057657600080fd5b61058284828501610416565b91505092915050565b61059481610666565b82525050565b6105a381610678565b82525050565b6105b2816106a4565b82525050565b60006020820190506105cd600083018461058b565b92915050565b60006020820190506105e8600083018461059a565b92915050565b600060208201905061060360008301846105a9565b92915050565b6000604051905081810181811067ffffffffffffffff821117156106305761062f6106ae565b5b8060405250919050565b600067ffffffffffffffff821115610655576106546106ae565b5b602082029050602081019050919050565b600061067182610684565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6106e681610666565b81146106f157600080fd5b50565b6106fd816106a4565b811461070857600080fd5b5056fea26469706673582212206f37aef090375587868146e414277f99b28a66630e6287d64f2805bceb191d0364736f6c63430008000033",
-  "immutableReferences": {},
-  "sourceMap": "29:3530:4:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "29:3530:4:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3218:49;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;2212:91;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1937:88;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;233:80;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;2589:82;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1642:77;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;893:87;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;449:86;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;1407:88;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;3504:52;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1123:93;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;675:89;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;2914:72;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;3218:49;;:::o;2212:91::-;;;:::o;1937:88::-;;;:::o;233:80::-;302:7;233:80;;;:::o;2589:82::-;;;:::o;1642:77::-;1711:4;1642:77;;;:::o;893:87::-;969:7;893:87;;;:::o;449:86::-;527:4;449:86;;;:::o;1407:88::-;1487:4;1407:88;;;;:::o;3504:52::-;;:::o;1123:93::-;1208:4;1123:93;;;:::o;675:89::-;756:4;675:89;;;:::o;2914:72::-;;:::o;24:622:10:-;;145:80;160:64;217:6;160:64;:::i;:::-;145:80;:::i;:::-;136:89;;245:5;273:6;266:5;259:21;299:4;292:5;288:16;281:23;;324:6;374:3;366:4;358:6;354:17;349:3;345:27;342:36;339:2;;;391:1;388;381:12;339:2;419:1;404:236;429:6;426:1;423:13;404:236;;;496:3;524:37;557:3;545:10;524:37;:::i;:::-;519:3;512:50;591:4;586:3;582:14;575:21;;625:4;620:3;616:14;609:21;;464:176;451:1;448;444:9;439:14;;404:236;;;408:14;126:520;;;;;;;:::o;652:139::-;;736:6;723:20;714:29;;752:33;779:5;752:33;:::i;:::-;704:87;;;;:::o;814:303::-;;934:3;927:4;919:6;915:17;911:27;901:2;;952:1;949;942:12;901:2;992:6;979:20;1017:94;1107:3;1099:6;1092:4;1084:6;1080:17;1017:94;:::i;:::-;1008:103;;891:226;;;;;:::o;1123:139::-;;1207:6;1194:20;1185:29;;1223:33;1250:5;1223:33;:::i;:::-;1175:87;;;;:::o;1268:262::-;;1376:2;1364:9;1355:7;1351:23;1347:32;1344:2;;;1392:1;1389;1382:12;1344:2;1435:1;1460:53;1505:7;1496:6;1485:9;1481:22;1460:53;:::i;:::-;1450:63;;1406:117;1334:196;;;;:::o;1536:407::-;;;1661:2;1649:9;1640:7;1636:23;1632:32;1629:2;;;1677:1;1674;1667:12;1629:2;1720:1;1745:53;1790:7;1781:6;1770:9;1766:22;1745:53;:::i;:::-;1735:63;;1691:117;1847:2;1873:53;1918:7;1909:6;1898:9;1894:22;1873:53;:::i;:::-;1863:63;;1818:118;1619:324;;;;;:::o;1949:550::-;;;2099:2;2087:9;2078:7;2074:23;2070:32;2067:2;;;2115:1;2112;2105:12;2067:2;2158:1;2183:53;2228:7;2219:6;2208:9;2204:22;2183:53;:::i;:::-;2173:63;;2129:117;2313:2;2302:9;2298:18;2285:32;2344:18;2336:6;2333:30;2330:2;;;2376:1;2373;2366:12;2330:2;2404:78;2474:7;2465:6;2454:9;2450:22;2404:78;:::i;:::-;2394:88;;2256:236;2057:442;;;;;:::o;2505:407::-;;;2630:2;2618:9;2609:7;2605:23;2601:32;2598:2;;;2646:1;2643;2636:12;2598:2;2689:1;2714:53;2759:7;2750:6;2739:9;2735:22;2714:53;:::i;:::-;2704:63;;2660:117;2816:2;2842:53;2887:7;2878:6;2867:9;2863:22;2842:53;:::i;:::-;2832:63;;2787:118;2588:324;;;;;:::o;2918:405::-;;3051:2;3039:9;3030:7;3026:23;3022:32;3019:2;;;3067:1;3064;3057:12;3019:2;3138:1;3127:9;3123:17;3110:31;3168:18;3160:6;3157:30;3154:2;;;3200:1;3197;3190:12;3154:2;3228:78;3298:7;3289:6;3278:9;3274:22;3228:78;:::i;:::-;3218:88;;3081:235;3009:314;;;;:::o;3329:118::-;3416:24;3434:5;3416:24;:::i;:::-;3411:3;3404:37;3394:53;;:::o;3453:109::-;3534:21;3549:5;3534:21;:::i;:::-;3529:3;3522:34;3512:50;;:::o;3568:118::-;3655:24;3673:5;3655:24;:::i;:::-;3650:3;3643:37;3633:53;;:::o;3692:222::-;;3823:2;3812:9;3808:18;3800:26;;3836:71;3904:1;3893:9;3889:17;3880:6;3836:71;:::i;:::-;3790:124;;;;:::o;3920:210::-;;4045:2;4034:9;4030:18;4022:26;;4058:65;4120:1;4109:9;4105:17;4096:6;4058:65;:::i;:::-;4012:118;;;;:::o;4136:222::-;;4267:2;4256:9;4252:18;4244:26;;4280:71;4348:1;4337:9;4333:17;4324:6;4280:71;:::i;:::-;4234:124;;;;:::o;4364:283::-;;4430:2;4424:9;4414:19;;4472:4;4464:6;4460:17;4579:6;4567:10;4564:22;4543:18;4531:10;4528:34;4525:62;4522:2;;;4590:18;;:::i;:::-;4522:2;4630:10;4626:2;4619:22;4404:243;;;;:::o;4653:311::-;;4820:18;4812:6;4809:30;4806:2;;;4842:18;;:::i;:::-;4806:2;4892:4;4884:6;4880:17;4872:25;;4952:4;4946;4942:15;4934:23;;4735:229;;;:::o;4970:96::-;;5036:24;5054:5;5036:24;:::i;:::-;5025:35;;5015:51;;;:::o;5072:90::-;;5149:5;5142:13;5135:21;5124:32;;5114:48;;;:::o;5168:126::-;;5245:42;5238:5;5234:54;5223:65;;5213:81;;;:::o;5300:77::-;;5366:5;5355:16;;5345:32;;;:::o;5383:180::-;5431:77;5428:1;5421:88;5528:4;5525:1;5518:15;5552:4;5549:1;5542:15;5569:122;5642:24;5660:5;5642:24;:::i;:::-;5635:5;5632:35;5622:2;;5681:1;5678;5671:12;5622:2;5612:79;:::o;5697:122::-;5770:24;5788:5;5770:24;:::i;:::-;5763:5;5760:35;5750:2;;5809:1;5806;5799:12;5750:2;5740:79;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"name\":\"addPrivilege\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"addPrivilegeByAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsorForCollateral\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsorForGas\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredBalanceForCollateral\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredBalanceForGas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"getSponsoredGasFeeUpperBound\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"isAllWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"name\":\"removePrivilege\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"removePrivilegeByAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"}],\"name\":\"setSponsorForCollateral\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"upperBound\",\"type\":\"uint256\"}],\"name\":\"setSponsorForGas\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"addPrivilegeByAdmin(address,address[])\":{\"details\":\"contract admin add user to whitelist\",\"params\":{\"addresses\":\"The user address array\",\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsorForCollateral(address)\":{\"details\":\"get collateral sponsor address\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsorForGas(address)\":{\"details\":\"get gas sponsor address of specific contract\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredBalanceForCollateral(address)\":{\"details\":\"get current Sponsored Balance for collateral\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredBalanceForGas(address)\":{\"details\":\"get current Sponsored Balance for gas\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"getSponsoredGasFeeUpperBound(address)\":{\"details\":\"get current Sponsored Gas fee upper bound\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"isAllWhitelisted(address)\":{\"details\":\"check if all users are in a contract's whitelist\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\"}},\"isWhitelisted(address,address)\":{\"details\":\"check if a user is in a contract's whitelist\",\"params\":{\"contractAddr\":\"The address of the sponsored contract\",\"user\":\"The address of contract user\"}},\"removePrivilegeByAdmin(address,address[])\":{\"details\":\"contract admin remove user from whitelist\",\"params\":{\"addresses\":\"The user address array\",\"contractAddr\":\"The address of the sponsored contract\"}}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/E/UofT/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol\":\"SponsorWhitelistControl\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/UofT/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol\":{\"keccak256\":\"0xdcb0c72dcfb6ab3f0bd4e8d63d60b3f65b53a88a7e2ac07afdb9cf93f46eec26\",\"urls\":[\"bzz-raw://e9c14bce5a5ee71633be654ca0ef2505c3894e0fc364b4f891a005a319022a21\",\"dweb:/ipfs/QmTyrVKBBMdgDm8sq2xepFyA95SjsEyLGdf98kKw7VxcuJ\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061086c806100206000396000f3fe6080604052600436106100c25760003560e01c80638382c3a71161007f578063d2932db611610059578063d2932db61461061d578063d47e9a57146106e2578063d665f9dd14610747578063e66c1bea146107ac576100c2565b80638382c3a71461049e578063b3b28fac1461052f578063b6b3527214610594576100c2565b806310128d3e146100c7578063217e055b1461018c57806322effe841461027157806333a1af31146103565780633e3e6428146103e757806379b47faa14610435575b600080fd5b3480156100d357600080fd5b5061018a600480360360208110156100ea57600080fd5b810190808035906020019064010000000081111561010757600080fd5b82018360208201111561011957600080fd5b8035906020019184602083028401116401000000008311171561013b57600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f0565b005b34801561019857600080fd5b5061026f600480360360408110156101af57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156101ec57600080fd5b8201836020820111156101fe57600080fd5b8035906020019184602083028401116401000000008311171561022057600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f3565b005b34801561027d57600080fd5b506103546004803603604081101561029457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156102d157600080fd5b8201836020820111156102e357600080fd5b8035906020019184602083028401116401000000008311171561030557600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f7565b005b34801561036257600080fd5b506103a56004803603602081101561037957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506107fb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610433600480360360408110156103fd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610802565b005b34801561044157600080fd5b506104846004803603602081101561045857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610806565b604051808215151515815260200191505060405180910390f35b3480156104aa57600080fd5b506104ed600480360360208110156104c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061080d565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561053b57600080fd5b5061057e6004803603602081101561055257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610814565b6040518082815260200191505060405180910390f35b3480156105a057600080fd5b50610603600480360360408110156105b757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061081b565b604051808215151515815260200191505060405180910390f35b34801561062957600080fd5b506106e06004803603602081101561064057600080fd5b810190808035906020019064010000000081111561065d57600080fd5b82018360208201111561066f57600080fd5b8035906020019184602083028401116401000000008311171561069157600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f820116905080830192505050505050509192919290505050610823565b005b3480156106ee57600080fd5b506107316004803603602081101561070557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610826565b6040518082815260200191505060405180910390f35b34801561075357600080fd5b506107966004803603602081101561076a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061082d565b6040518082815260200191505060405180910390f35b6107ee600480360360208110156107c257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610834565b005b50565b5050565b5050565b6000919050565b5050565b6000919050565b6000919050565b6000919050565b600092915050565b50565b6000919050565b6000919050565b5056fea265627a7a723158202abdeb8f113e997a646779b037ef259d58577c819b3a53bc3f6e9e43c7af45d564736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600436106100c25760003560e01c80638382c3a71161007f578063d2932db611610059578063d2932db61461061d578063d47e9a57146106e2578063d665f9dd14610747578063e66c1bea146107ac576100c2565b80638382c3a71461049e578063b3b28fac1461052f578063b6b3527214610594576100c2565b806310128d3e146100c7578063217e055b1461018c57806322effe841461027157806333a1af31146103565780633e3e6428146103e757806379b47faa14610435575b600080fd5b3480156100d357600080fd5b5061018a600480360360208110156100ea57600080fd5b810190808035906020019064010000000081111561010757600080fd5b82018360208201111561011957600080fd5b8035906020019184602083028401116401000000008311171561013b57600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f0565b005b34801561019857600080fd5b5061026f600480360360408110156101af57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156101ec57600080fd5b8201836020820111156101fe57600080fd5b8035906020019184602083028401116401000000008311171561022057600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f3565b005b34801561027d57600080fd5b506103546004803603604081101561029457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001906401000000008111156102d157600080fd5b8201836020820111156102e357600080fd5b8035906020019184602083028401116401000000008311171561030557600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f8201169050808301925050505050505091929192905050506107f7565b005b34801561036257600080fd5b506103a56004803603602081101561037957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506107fb565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610433600480360360408110156103fd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610802565b005b34801561044157600080fd5b506104846004803603602081101561045857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610806565b604051808215151515815260200191505060405180910390f35b3480156104aa57600080fd5b506104ed600480360360208110156104c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061080d565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561053b57600080fd5b5061057e6004803603602081101561055257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610814565b6040518082815260200191505060405180910390f35b3480156105a057600080fd5b50610603600480360360408110156105b757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061081b565b604051808215151515815260200191505060405180910390f35b34801561062957600080fd5b506106e06004803603602081101561064057600080fd5b810190808035906020019064010000000081111561065d57600080fd5b82018360208201111561066f57600080fd5b8035906020019184602083028401116401000000008311171561069157600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f820116905080830192505050505050509192919290505050610823565b005b3480156106ee57600080fd5b506107316004803603602081101561070557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610826565b6040518082815260200191505060405180910390f35b34801561075357600080fd5b506107966004803603602081101561076a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061082d565b6040518082815260200191505060405180910390f35b6107ee600480360360208110156107c257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610834565b005b50565b5050565b5050565b6000919050565b5050565b6000919050565b6000919050565b6000919050565b600092915050565b50565b6000919050565b6000919050565b5056fea265627a7a723158202abdeb8f113e997a646779b037ef259d58577c819b3a53bc3f6e9e43c7af45d564736f6c63430005100032",
+  "sourceMap": "29:3530:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;29:3530:0;;;;;;;",
+  "deployedSourceMap": "29:3530:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3218:49;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3218:49:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3218:49:0;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;3218:49:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;3218:49:0;;;;;;101:9:-1;95:2;81:12;77:21;67:8;63:36;60:51;39:11;25:12;22:29;11:108;8:2;;;132:1;129;122:12;8:2;3218:49:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;3218:49:0;;;;;;;;;;;;;;;:::i;:::-;;2212:91;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2212:91:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2212:91:0;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;2212:91:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;2212:91:0;;;;;;101:9:-1;95:2;81:12;77:21;67:8;63:36;60:51;39:11;25:12;22:29;11:108;8:2;;;132:1;129;122:12;8:2;2212:91:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;2212:91:0;;;;;;;;;;;;;;;:::i;:::-;;1937:88;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1937:88:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1937:88:0;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;1937:88:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;1937:88:0;;;;;;101:9:-1;95:2;81:12;77:21;67:8;63:36;60:51;39:11;25:12;22:29;11:108;8:2;;;132:1;129;122:12;8:2;1937:88:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;1937:88:0;;;;;;;;;;;;;;;:::i;:::-;;233:80;;8:9:-1;5:2;;;30:1;27;20:12;5:2;233:80:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;233:80:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;2589:82;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2589:82:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1642:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1642:77:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1642:77:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;893:87;;8:9:-1;5:2;;;30:1;27;20:12;5:2;893:87:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;893:87:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;449:86;;8:9:-1;5:2;;;30:1;27;20:12;5:2;449:86:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;449:86:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1407:88;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1407:88:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1407:88:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;3504:52;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3504:52:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;3504:52:0;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;3504:52:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;3504:52:0;;;;;;101:9:-1;95:2;81:12;77:21;67:8;63:36;60:51;39:11;25:12;22:29;11:108;8:2;;;132:1;129;122:12;8:2;3504:52:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;3504:52:0;;;;;;;;;;;;;;;:::i;:::-;;1123:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1123:93:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1123:93:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;675:89;;8:9:-1;5:2;;;30:1;27;20:12;5:2;675:89:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;675:89:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2914:72;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2914:72:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;3218:49;;:::o;2212:91::-;;;:::o;1937:88::-;;;:::o;233:80::-;302:7;233:80;;;:::o;2589:82::-;;;:::o;1642:77::-;1711:4;1642:77;;;:::o;893:87::-;969:7;893:87;;;:::o;449:86::-;527:4;449:86;;;:::o;1407:88::-;1487:4;1407:88;;;;:::o;3504:52::-;;:::o;1123:93::-;1208:4;1123:93;;;:::o;675:89::-;756:4;675:89;;;:::o;2914:72::-;;:::o",
   "source": "pragma solidity >=0.4.15;\r\n\r\ncontract SponsorWhitelistControl {\r\n  /*** Query Functions ***/\r\n  /**\r\n    * @dev get gas sponsor address of specific contract\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function getSponsorForGas(address contractAddr) public view returns (address) {}\r\n\r\n  /**\r\n    * @dev get current Sponsored Balance for gas\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function getSponsoredBalanceForGas(address contractAddr) public view returns (uint) {}\r\n\r\n  /**\r\n    * @dev get current Sponsored Gas fee upper bound\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function getSponsoredGasFeeUpperBound(address contractAddr) public view returns (uint) {}\r\n\r\n  /**\r\n    * @dev get collateral sponsor address\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function getSponsorForCollateral(address contractAddr) public view returns (address) {}\r\n\r\n  /**\r\n    * @dev get current Sponsored Balance for collateral\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function getSponsoredBalanceForCollateral(address contractAddr) public view returns (uint) {}\r\n\r\n  /**\r\n    * @dev check if a user is in a contract's whitelist\r\n    * @param contractAddr The address of the sponsored contract\r\n    * @param user The address of contract user\r\n    */\r\n  function isWhitelisted(address contractAddr, address user) public view returns (bool) {}\r\n\r\n  /**\r\n    * @dev check if all users are in a contract's whitelist\r\n    * @param contractAddr The address of the sponsored contract\r\n    */\r\n  function isAllWhitelisted(address contractAddr) public view returns (bool) {}\r\n\r\n  /*** for contract admin only **/\r\n  /**\r\n    * @dev contract admin add user to whitelist\r\n    * @param contractAddr The address of the sponsored contract\r\n    * @param addresses The user address array\r\n    */\r\n  function addPrivilegeByAdmin(address contractAddr, address[] memory addresses) public {}\r\n\r\n  /**\r\n    * @dev contract admin remove user from whitelist\r\n    * @param contractAddr The address of the sponsored contract\r\n    * @param addresses The user address array\r\n    */\r\n  function removePrivilegeByAdmin(address contractAddr, address[] memory addresses) public {}\r\n\r\n  // ------------------------------------------------------------------------\r\n  // Someone will sponsor the gas cost for contract `contractAddr` with an\r\n  // `upper_bound` for a single transaction.\r\n  // ------------------------------------------------------------------------\r\n  function setSponsorForGas(address contractAddr, uint upperBound) public payable {}\r\n\r\n  // ------------------------------------------------------------------------\r\n  // Someone will sponsor the storage collateral for contract `contractAddr`.\r\n  // ------------------------------------------------------------------------\r\n  function setSponsorForCollateral(address contractAddr) public payable {}\r\n\r\n  // ------------------------------------------------------------------------\r\n  // Add commission privilege for address `user` to some contract.\r\n  // ------------------------------------------------------------------------\r\n  function addPrivilege(address[] memory) public {}\r\n\r\n  // ------------------------------------------------------------------------\r\n  // Remove commission privilege for address `user` from some contract.\r\n  // ------------------------------------------------------------------------\r\n  function removePrivilege(address[] memory) public {}\r\n}",
-  "sourcePath": "/c/Users/bowen/Documents/UofT/4th_year_lec/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
+  "sourcePath": "E:/UofT/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
   "ast": {
-    "absolutePath": "/c/Users/bowen/Documents/UofT/4th_year_lec/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
+    "absolutePath": "/E/UofT/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
     "exportedSymbols": {
       "SponsorWhitelistControl": [
-        294
+        106
       ]
     },
-    "id": 295,
+    "id": 107,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 180,
+        "id": 1,
         "literals": [
           "solidity",
           ">=",
@@ -260,53 +285,46 @@
           ".15"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:25:4"
+        "src": "0:25:0"
       },
       {
-        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
+        "documentation": null,
         "fullyImplemented": true,
-        "id": 294,
+        "id": 106,
         "linearizedBaseContracts": [
-          294
+          106
         ],
         "name": "SponsorWhitelistControl",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 188,
+              "id": 8,
               "nodeType": "Block",
-              "src": "311:2:4",
+              "src": "311:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 181,
-              "nodeType": "StructuredDocumentation",
-              "src": "96:133:4",
-              "text": " @dev get gas sponsor address of specific contract\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "33a1af31",
-            "id": 189,
+            "documentation": "@dev get gas sponsor address of specific contract\n@param contractAddr The address of the sponsored contract",
+            "id": 9,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getSponsorForGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 184,
+              "id": 4,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 183,
-                  "mutability": "mutable",
+                  "id": 3,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 189,
-                  "src": "259:20:4",
+                  "scope": 9,
+                  "src": "259:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -314,33 +332,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 182,
+                    "id": 2,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "259:7:4",
+                    "src": "259:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "258:22:4"
+              "src": "258:22:0"
             },
             "returnParameters": {
-              "id": 187,
+              "id": 7,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 186,
-                  "mutability": "mutable",
+                  "id": 6,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 189,
-                  "src": "302:7:4",
+                  "scope": 9,
+                  "src": "302:7:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -348,59 +366,53 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 185,
+                    "id": 5,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "302:7:4",
+                    "src": "302:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "301:9:4"
+              "src": "301:9:0"
             },
-            "scope": 294,
-            "src": "233:80:4",
+            "scope": 106,
+            "src": "233:80:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 197,
+              "id": 16,
               "nodeType": "Block",
-              "src": "533:2:4",
+              "src": "533:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 190,
-              "nodeType": "StructuredDocumentation",
-              "src": "319:126:4",
-              "text": " @dev get current Sponsored Balance for gas\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "b3b28fac",
-            "id": 198,
+            "documentation": "@dev get current Sponsored Balance for gas\n@param contractAddr The address of the sponsored contract",
+            "id": 17,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getSponsoredBalanceForGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 193,
+              "id": 12,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 192,
-                  "mutability": "mutable",
+                  "id": 11,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 198,
-                  "src": "484:20:4",
+                  "scope": 17,
+                  "src": "484:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -408,33 +420,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 191,
+                    "id": 10,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "484:7:4",
+                    "src": "484:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "483:22:4"
+              "src": "483:22:0"
             },
             "returnParameters": {
-              "id": 196,
+              "id": 15,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 195,
-                  "mutability": "mutable",
+                  "id": 14,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 198,
-                  "src": "527:4:4",
+                  "scope": 17,
+                  "src": "527:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -442,58 +454,52 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 194,
+                    "id": 13,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "527:4:4",
+                    "src": "527:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "526:6:4"
+              "src": "526:6:0"
             },
-            "scope": 294,
-            "src": "449:86:4",
+            "scope": 106,
+            "src": "449:86:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 206,
+              "id": 24,
               "nodeType": "Block",
-              "src": "762:2:4",
+              "src": "762:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 199,
-              "nodeType": "StructuredDocumentation",
-              "src": "541:130:4",
-              "text": " @dev get current Sponsored Gas fee upper bound\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "d665f9dd",
-            "id": 207,
+            "documentation": "@dev get current Sponsored Gas fee upper bound\n@param contractAddr The address of the sponsored contract",
+            "id": 25,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getSponsoredGasFeeUpperBound",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 202,
+              "id": 20,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 201,
-                  "mutability": "mutable",
+                  "id": 19,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 207,
-                  "src": "713:20:4",
+                  "scope": 25,
+                  "src": "713:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -501,33 +507,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 200,
+                    "id": 18,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "713:7:4",
+                    "src": "713:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "712:22:4"
+              "src": "712:22:0"
             },
             "returnParameters": {
-              "id": 205,
+              "id": 23,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 204,
-                  "mutability": "mutable",
+                  "id": 22,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 207,
-                  "src": "756:4:4",
+                  "scope": 25,
+                  "src": "756:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -535,58 +541,52 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 203,
+                    "id": 21,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "756:4:4",
+                    "src": "756:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "755:6:4"
+              "src": "755:6:0"
             },
-            "scope": 294,
-            "src": "675:89:4",
+            "scope": 106,
+            "src": "675:89:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 215,
+              "id": 32,
               "nodeType": "Block",
-              "src": "978:2:4",
+              "src": "978:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 208,
-              "nodeType": "StructuredDocumentation",
-              "src": "770:119:4",
-              "text": " @dev get collateral sponsor address\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "8382c3a7",
-            "id": 216,
+            "documentation": "@dev get collateral sponsor address\n@param contractAddr The address of the sponsored contract",
+            "id": 33,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getSponsorForCollateral",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 211,
+              "id": 28,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 210,
-                  "mutability": "mutable",
+                  "id": 27,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 216,
-                  "src": "926:20:4",
+                  "scope": 33,
+                  "src": "926:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -594,33 +594,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 209,
+                    "id": 26,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "926:7:4",
+                    "src": "926:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "925:22:4"
+              "src": "925:22:0"
             },
             "returnParameters": {
-              "id": 214,
+              "id": 31,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 213,
-                  "mutability": "mutable",
+                  "id": 30,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 216,
-                  "src": "969:7:4",
+                  "scope": 33,
+                  "src": "969:7:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -628,59 +628,53 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 212,
+                    "id": 29,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "969:7:4",
+                    "src": "969:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "968:9:4"
+              "src": "968:9:0"
             },
-            "scope": 294,
-            "src": "893:87:4",
+            "scope": 106,
+            "src": "893:87:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 224,
+              "id": 40,
               "nodeType": "Block",
-              "src": "1214:2:4",
+              "src": "1214:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 217,
-              "nodeType": "StructuredDocumentation",
-              "src": "986:133:4",
-              "text": " @dev get current Sponsored Balance for collateral\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "d47e9a57",
-            "id": 225,
+            "documentation": "@dev get current Sponsored Balance for collateral\n@param contractAddr The address of the sponsored contract",
+            "id": 41,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getSponsoredBalanceForCollateral",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 220,
+              "id": 36,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 219,
-                  "mutability": "mutable",
+                  "id": 35,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 225,
-                  "src": "1165:20:4",
+                  "scope": 41,
+                  "src": "1165:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -688,33 +682,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 218,
+                    "id": 34,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1165:7:4",
+                    "src": "1165:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1164:22:4"
+              "src": "1164:22:0"
             },
             "returnParameters": {
-              "id": 223,
+              "id": 39,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 222,
-                  "mutability": "mutable",
+                  "id": 38,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 225,
-                  "src": "1208:4:4",
+                  "scope": 41,
+                  "src": "1208:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -722,58 +716,52 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 221,
+                    "id": 37,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1208:4:4",
+                    "src": "1208:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1207:6:4"
+              "src": "1207:6:0"
             },
-            "scope": 294,
-            "src": "1123:93:4",
+            "scope": 106,
+            "src": "1123:93:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 235,
+              "id": 50,
               "nodeType": "Block",
-              "src": "1493:2:4",
+              "src": "1493:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 226,
-              "nodeType": "StructuredDocumentation",
-              "src": "1222:181:4",
-              "text": " @dev check if a user is in a contract's whitelist\n @param contractAddr The address of the sponsored contract\n @param user The address of contract user"
-            },
-            "functionSelector": "b6b35272",
-            "id": 236,
+            "documentation": "@dev check if a user is in a contract's whitelist\n@param contractAddr The address of the sponsored contract\n@param user The address of contract user",
+            "id": 51,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 231,
+              "id": 46,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 228,
-                  "mutability": "mutable",
+                  "id": 43,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1430:20:4",
+                  "scope": 51,
+                  "src": "1430:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -781,26 +769,26 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 227,
+                    "id": 42,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1430:7:4",
+                    "src": "1430:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 },
                 {
                   "constant": false,
-                  "id": 230,
-                  "mutability": "mutable",
+                  "id": 45,
                   "name": "user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1452:12:4",
+                  "scope": 51,
+                  "src": "1452:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -808,33 +796,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 229,
+                    "id": 44,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1452:7:4",
+                    "src": "1452:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1429:36:4"
+              "src": "1429:36:0"
             },
             "returnParameters": {
-              "id": 234,
+              "id": 49,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 233,
-                  "mutability": "mutable",
+                  "id": 48,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1487:4:4",
+                  "scope": 51,
+                  "src": "1487:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -842,58 +830,52 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 232,
+                    "id": 47,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1487:4:4",
+                    "src": "1487:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1486:6:4"
+              "src": "1486:6:0"
             },
-            "scope": 294,
-            "src": "1407:88:4",
+            "scope": 106,
+            "src": "1407:88:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 244,
+              "id": 58,
               "nodeType": "Block",
-              "src": "1717:2:4",
+              "src": "1717:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 237,
-              "nodeType": "StructuredDocumentation",
-              "src": "1501:137:4",
-              "text": " @dev check if all users are in a contract's whitelist\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "79b47faa",
-            "id": 245,
+            "documentation": "@dev check if all users are in a contract's whitelist\n@param contractAddr The address of the sponsored contract",
+            "id": 59,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isAllWhitelisted",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 240,
+              "id": 54,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 239,
-                  "mutability": "mutable",
+                  "id": 53,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 245,
-                  "src": "1668:20:4",
+                  "scope": 59,
+                  "src": "1668:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -901,33 +883,33 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 238,
+                    "id": 52,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1668:7:4",
+                    "src": "1668:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1667:22:4"
+              "src": "1667:22:0"
             },
             "returnParameters": {
-              "id": 243,
+              "id": 57,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 242,
-                  "mutability": "mutable",
+                  "id": 56,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 245,
-                  "src": "1711:4:4",
+                  "scope": 59,
+                  "src": "1711:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -935,58 +917,52 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 241,
+                    "id": 55,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1711:4:4",
+                    "src": "1711:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1710:6:4"
+              "src": "1710:6:0"
             },
-            "scope": 294,
-            "src": "1642:77:4",
+            "scope": 106,
+            "src": "1642:77:0",
             "stateMutability": "view",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 254,
+              "id": 67,
               "nodeType": "Block",
-              "src": "2023:2:4",
+              "src": "2023:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 246,
-              "nodeType": "StructuredDocumentation",
-              "src": "1761:172:4",
-              "text": " @dev contract admin add user to whitelist\n @param contractAddr The address of the sponsored contract\n @param addresses The user address array"
-            },
-            "functionSelector": "22effe84",
-            "id": 255,
+            "documentation": "@dev contract admin add user to whitelist\n@param contractAddr The address of the sponsored contract\n@param addresses The user address array",
+            "id": 68,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addPrivilegeByAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 252,
+              "id": 65,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 248,
-                  "mutability": "mutable",
+                  "id": 61,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 255,
-                  "src": "1966:20:4",
+                  "scope": 68,
+                  "src": "1966:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -994,26 +970,26 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 247,
+                    "id": 60,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1966:7:4",
+                    "src": "1966:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 },
                 {
                   "constant": false,
-                  "id": 251,
-                  "mutability": "mutable",
+                  "id": 64,
                   "name": "addresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 255,
-                  "src": "1988:26:4",
+                  "scope": 68,
+                  "src": "1988:26:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1022,73 +998,68 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 249,
+                      "id": 62,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1988:7:4",
+                      "src": "1988:7:0",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 250,
+                    "id": 63,
+                    "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1988:9:4",
+                    "src": "1988:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "1965:50:4"
+              "src": "1965:50:0"
             },
             "returnParameters": {
-              "id": 253,
+              "id": 66,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2023:0:4"
+              "src": "2023:0:0"
             },
-            "scope": 294,
-            "src": "1937:88:4",
+            "scope": 106,
+            "src": "1937:88:0",
             "stateMutability": "nonpayable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 264,
+              "id": 76,
               "nodeType": "Block",
-              "src": "2301:2:4",
+              "src": "2301:2:0",
               "statements": []
             },
-            "documentation": {
-              "id": 256,
-              "nodeType": "StructuredDocumentation",
-              "src": "2031:177:4",
-              "text": " @dev contract admin remove user from whitelist\n @param contractAddr The address of the sponsored contract\n @param addresses The user address array"
-            },
-            "functionSelector": "217e055b",
-            "id": 265,
+            "documentation": "@dev contract admin remove user from whitelist\n@param contractAddr The address of the sponsored contract\n@param addresses The user address array",
+            "id": 77,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removePrivilegeByAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 262,
+              "id": 74,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 258,
-                  "mutability": "mutable",
+                  "id": 70,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 265,
-                  "src": "2244:20:4",
+                  "scope": 77,
+                  "src": "2244:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1096,26 +1067,26 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 257,
+                    "id": 69,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2244:7:4",
+                    "src": "2244:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 },
                 {
                   "constant": false,
-                  "id": 261,
-                  "mutability": "mutable",
+                  "id": 73,
                   "name": "addresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 265,
-                  "src": "2266:26:4",
+                  "scope": 77,
+                  "src": "2266:26:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1124,67 +1095,68 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 259,
+                      "id": 71,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2266:7:4",
+                      "src": "2266:7:0",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 260,
+                    "id": 72,
+                    "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2266:9:4",
+                    "src": "2266:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "2243:50:4"
+              "src": "2243:50:0"
             },
             "returnParameters": {
-              "id": 263,
+              "id": 75,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2301:0:4"
+              "src": "2301:0:0"
             },
-            "scope": 294,
-            "src": "2212:91:4",
+            "scope": 106,
+            "src": "2212:91:0",
             "stateMutability": "nonpayable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 272,
+              "id": 84,
               "nodeType": "Block",
-              "src": "2669:2:4",
+              "src": "2669:2:0",
               "statements": []
             },
-            "functionSelector": "3e3e6428",
-            "id": 273,
+            "documentation": null,
+            "id": 85,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setSponsorForGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 270,
+              "id": 82,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 267,
-                  "mutability": "mutable",
+                  "id": 79,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 273,
-                  "src": "2615:20:4",
+                  "scope": 85,
+                  "src": "2615:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1192,26 +1164,26 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 266,
+                    "id": 78,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2615:7:4",
+                    "src": "2615:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 },
                 {
                   "constant": false,
-                  "id": 269,
-                  "mutability": "mutable",
+                  "id": 81,
                   "name": "upperBound",
                   "nodeType": "VariableDeclaration",
-                  "scope": 273,
-                  "src": "2637:15:4",
+                  "scope": 85,
+                  "src": "2637:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1219,58 +1191,58 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 268,
+                    "id": 80,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2637:4:4",
+                    "src": "2637:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "2614:39:4"
+              "src": "2614:39:0"
             },
             "returnParameters": {
-              "id": 271,
+              "id": 83,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2669:0:4"
+              "src": "2669:0:0"
             },
-            "scope": 294,
-            "src": "2589:82:4",
+            "scope": 106,
+            "src": "2589:82:0",
             "stateMutability": "payable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 278,
+              "id": 90,
               "nodeType": "Block",
-              "src": "2984:2:4",
+              "src": "2984:2:0",
               "statements": []
             },
-            "functionSelector": "e66c1bea",
-            "id": 279,
+            "documentation": null,
+            "id": 91,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setSponsorForCollateral",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 276,
+              "id": 88,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 275,
-                  "mutability": "mutable",
+                  "id": 87,
                   "name": "contractAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 279,
-                  "src": "2947:20:4",
+                  "scope": 91,
+                  "src": "2947:20:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1278,59 +1250,59 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 274,
+                    "id": 86,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2947:7:4",
+                    "src": "2947:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "2946:22:4"
+              "src": "2946:22:0"
             },
             "returnParameters": {
-              "id": 277,
+              "id": 89,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2984:0:4"
+              "src": "2984:0:0"
             },
-            "scope": 294,
-            "src": "2914:72:4",
+            "scope": 106,
+            "src": "2914:72:0",
             "stateMutability": "payable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 285,
+              "id": 97,
               "nodeType": "Block",
-              "src": "3265:2:4",
+              "src": "3265:2:0",
               "statements": []
             },
-            "functionSelector": "10128d3e",
-            "id": 286,
+            "documentation": null,
+            "id": 98,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addPrivilege",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 283,
+              "id": 95,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 282,
-                  "mutability": "mutable",
+                  "id": 94,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 286,
-                  "src": "3240:16:4",
+                  "scope": 98,
+                  "src": "3240:16:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1339,67 +1311,68 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 280,
+                      "id": 92,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3240:7:4",
+                      "src": "3240:7:0",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 281,
+                    "id": 93,
+                    "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "3240:9:4",
+                    "src": "3240:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "3239:18:4"
+              "src": "3239:18:0"
             },
             "returnParameters": {
-              "id": 284,
+              "id": 96,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3265:0:4"
+              "src": "3265:0:0"
             },
-            "scope": 294,
-            "src": "3218:49:4",
+            "scope": 106,
+            "src": "3218:49:0",
             "stateMutability": "nonpayable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 292,
+              "id": 104,
               "nodeType": "Block",
-              "src": "3554:2:4",
+              "src": "3554:2:0",
               "statements": []
             },
-            "functionSelector": "d2932db6",
-            "id": 293,
+            "documentation": null,
+            "id": 105,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removePrivilege",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 290,
+              "id": 102,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 289,
-                  "mutability": "mutable",
+                  "id": 101,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 293,
-                  "src": "3529:16:4",
+                  "scope": 105,
+                  "src": "3529:16:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1408,1266 +1381,1417 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 287,
+                      "id": 99,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3529:7:4",
+                      "src": "3529:7:0",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 288,
+                    "id": 100,
+                    "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "3529:9:4",
+                    "src": "3529:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
                     }
                   },
+                  "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "3528:18:4"
+              "src": "3528:18:0"
             },
             "returnParameters": {
-              "id": 291,
+              "id": 103,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3554:0:4"
+              "src": "3554:0:0"
             },
-            "scope": 294,
-            "src": "3504:52:4",
+            "scope": 106,
+            "src": "3504:52:0",
             "stateMutability": "nonpayable",
-            "virtual": false,
+            "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 295,
-        "src": "29:3530:4"
+        "scope": 107,
+        "src": "29:3530:0"
       }
     ],
-    "src": "0:3559:4"
+    "src": "0:3559:0"
   },
   "legacyAST": {
-    "absolutePath": "/c/Users/bowen/Documents/UofT/4th_year_lec/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
-    "exportedSymbols": {
-      "SponsorWhitelistControl": [
-        294
-      ]
+    "attributes": {
+      "absolutePath": "/E/UofT/ECE496/stock_trading/contracts/SponsorWhitelistControl.sol",
+      "exportedSymbols": {
+        "SponsorWhitelistControl": [
+          106
+        ]
+      }
     },
-    "id": 295,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
-        "id": 180,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".15"
-        ],
-        "nodeType": "PragmaDirective",
-        "src": "0:25:4"
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".15"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:25:0"
       },
       {
-        "abstract": false,
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "fullyImplemented": true,
-        "id": 294,
-        "linearizedBaseContracts": [
-          294
-        ],
-        "name": "SponsorWhitelistControl",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            106
+          ],
+          "name": "SponsorWhitelistControl",
+          "scope": 107
+        },
+        "children": [
           {
-            "body": {
-              "id": 188,
-              "nodeType": "Block",
-              "src": "311:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 181,
-              "nodeType": "StructuredDocumentation",
-              "src": "96:133:4",
-              "text": " @dev get gas sponsor address of specific contract\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "33a1af31",
-            "id": 189,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getSponsorForGas",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 184,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 183,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 189,
-                  "src": "259:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 182,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "259:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "documentation": "@dev get gas sponsor address of specific contract\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "258:22:4"
+              "name": "getSponsorForGas",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "returnParameters": {
-              "id": 187,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 186,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 189,
-                  "src": "302:7:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 185,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "302:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "301:9:4"
-            },
-            "scope": 294,
-            "src": "233:80:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 197,
-              "nodeType": "Block",
-              "src": "533:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 190,
-              "nodeType": "StructuredDocumentation",
-              "src": "319:126:4",
-              "text": " @dev get current Sponsored Balance for gas\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "b3b28fac",
-            "id": 198,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getSponsoredBalanceForGas",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 193,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 192,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 198,
-                  "src": "484:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 191,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "484:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "483:22:4"
-            },
-            "returnParameters": {
-              "id": 196,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 195,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 198,
-                  "src": "527:4:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 194,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "527:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "526:6:4"
-            },
-            "scope": 294,
-            "src": "449:86:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 206,
-              "nodeType": "Block",
-              "src": "762:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 199,
-              "nodeType": "StructuredDocumentation",
-              "src": "541:130:4",
-              "text": " @dev get current Sponsored Gas fee upper bound\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "d665f9dd",
-            "id": 207,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getSponsoredGasFeeUpperBound",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 202,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 201,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 207,
-                  "src": "713:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 200,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "713:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "712:22:4"
-            },
-            "returnParameters": {
-              "id": 205,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 204,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 207,
-                  "src": "756:4:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 203,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "756:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "755:6:4"
-            },
-            "scope": 294,
-            "src": "675:89:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 215,
-              "nodeType": "Block",
-              "src": "978:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 208,
-              "nodeType": "StructuredDocumentation",
-              "src": "770:119:4",
-              "text": " @dev get collateral sponsor address\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "8382c3a7",
-            "id": 216,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getSponsorForCollateral",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 211,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 210,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 216,
-                  "src": "926:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 209,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "926:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "925:22:4"
-            },
-            "returnParameters": {
-              "id": 214,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 213,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 216,
-                  "src": "969:7:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 212,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "969:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "968:9:4"
-            },
-            "scope": 294,
-            "src": "893:87:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 224,
-              "nodeType": "Block",
-              "src": "1214:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 217,
-              "nodeType": "StructuredDocumentation",
-              "src": "986:133:4",
-              "text": " @dev get current Sponsored Balance for collateral\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "d47e9a57",
-            "id": 225,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getSponsoredBalanceForCollateral",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 220,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 219,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 225,
-                  "src": "1165:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 218,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1165:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1164:22:4"
-            },
-            "returnParameters": {
-              "id": 223,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 222,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 225,
-                  "src": "1208:4:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 221,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1208:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1207:6:4"
-            },
-            "scope": 294,
-            "src": "1123:93:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 235,
-              "nodeType": "Block",
-              "src": "1493:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 226,
-              "nodeType": "StructuredDocumentation",
-              "src": "1222:181:4",
-              "text": " @dev check if a user is in a contract's whitelist\n @param contractAddr The address of the sponsored contract\n @param user The address of contract user"
-            },
-            "functionSelector": "b6b35272",
-            "id": 236,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "isWhitelisted",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 231,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 228,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1430:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 227,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1430:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 230,
-                  "mutability": "mutable",
-                  "name": "user",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1452:12:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 229,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1452:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1429:36:4"
-            },
-            "returnParameters": {
-              "id": 234,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 233,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 236,
-                  "src": "1487:4:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 232,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1487:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1486:6:4"
-            },
-            "scope": 294,
-            "src": "1407:88:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 244,
-              "nodeType": "Block",
-              "src": "1717:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 237,
-              "nodeType": "StructuredDocumentation",
-              "src": "1501:137:4",
-              "text": " @dev check if all users are in a contract's whitelist\n @param contractAddr The address of the sponsored contract"
-            },
-            "functionSelector": "79b47faa",
-            "id": 245,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "isAllWhitelisted",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 240,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 239,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 245,
-                  "src": "1668:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 238,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1668:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1667:22:4"
-            },
-            "returnParameters": {
-              "id": 243,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 242,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 245,
-                  "src": "1711:4:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 241,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1711:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1710:6:4"
-            },
-            "scope": 294,
-            "src": "1642:77:4",
-            "stateMutability": "view",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 254,
-              "nodeType": "Block",
-              "src": "2023:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 246,
-              "nodeType": "StructuredDocumentation",
-              "src": "1761:172:4",
-              "text": " @dev contract admin add user to whitelist\n @param contractAddr The address of the sponsored contract\n @param addresses The user address array"
-            },
-            "functionSelector": "22effe84",
-            "id": 255,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "addPrivilegeByAdmin",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 252,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 248,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 255,
-                  "src": "1966:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 247,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1966:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 251,
-                  "mutability": "mutable",
-                  "name": "addresses",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 255,
-                  "src": "1988:26:4",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 249,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "1988:7:4",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 9,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
                     },
-                    "id": 250,
-                    "nodeType": "ArrayTypeName",
-                    "src": "1988:9:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1965:50:4"
-            },
-            "returnParameters": {
-              "id": 253,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2023:0:4"
-            },
-            "scope": 294,
-            "src": "1937:88:4",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 264,
-              "nodeType": "Block",
-              "src": "2301:2:4",
-              "statements": []
-            },
-            "documentation": {
-              "id": 256,
-              "nodeType": "StructuredDocumentation",
-              "src": "2031:177:4",
-              "text": " @dev contract admin remove user from whitelist\n @param contractAddr The address of the sponsored contract\n @param addresses The user address array"
-            },
-            "functionSelector": "217e055b",
-            "id": 265,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "removePrivilegeByAdmin",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 262,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 258,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 265,
-                  "src": "2244:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 257,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2244:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 2,
+                        "name": "ElementaryTypeName",
+                        "src": "259:7:0"
+                      }
+                    ],
+                    "id": 3,
+                    "name": "VariableDeclaration",
+                    "src": "259:20:0"
+                  }
+                ],
+                "id": 4,
+                "name": "ParameterList",
+                "src": "258:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 9,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 5,
+                        "name": "ElementaryTypeName",
+                        "src": "302:7:0"
+                      }
+                    ],
+                    "id": 6,
+                    "name": "VariableDeclaration",
+                    "src": "302:7:0"
+                  }
+                ],
+                "id": 7,
+                "name": "ParameterList",
+                "src": "301:9:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
                 },
-                {
-                  "constant": false,
-                  "id": 261,
-                  "mutability": "mutable",
-                  "name": "addresses",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 265,
-                  "src": "2266:26:4",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 259,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "2266:7:4",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "id": 260,
-                    "nodeType": "ArrayTypeName",
-                    "src": "2266:9:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2243:50:4"
-            },
-            "returnParameters": {
-              "id": 263,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2301:0:4"
-            },
-            "scope": 294,
-            "src": "2212:91:4",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
+                "children": [],
+                "id": 8,
+                "name": "Block",
+                "src": "311:2:0"
+              }
+            ],
+            "id": 9,
+            "name": "FunctionDefinition",
+            "src": "233:80:0"
           },
           {
-            "body": {
-              "id": 272,
-              "nodeType": "Block",
-              "src": "2669:2:4",
-              "statements": []
+            "attributes": {
+              "documentation": "@dev get current Sponsored Balance for gas\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getSponsoredBalanceForGas",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "functionSelector": "3e3e6428",
-            "id": 273,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "setSponsorForGas",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 270,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 267,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 273,
-                  "src": "2615:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 266,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2615:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 10,
+                        "name": "ElementaryTypeName",
+                        "src": "484:7:0"
+                      }
+                    ],
+                    "id": 11,
+                    "name": "VariableDeclaration",
+                    "src": "484:20:0"
+                  }
+                ],
+                "id": 12,
+                "name": "ParameterList",
+                "src": "483:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 17,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 13,
+                        "name": "ElementaryTypeName",
+                        "src": "527:4:0"
+                      }
+                    ],
+                    "id": 14,
+                    "name": "VariableDeclaration",
+                    "src": "527:4:0"
+                  }
+                ],
+                "id": 15,
+                "name": "ParameterList",
+                "src": "526:6:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
                 },
-                {
-                  "constant": false,
-                  "id": 269,
-                  "mutability": "mutable",
-                  "name": "upperBound",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 273,
-                  "src": "2637:15:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 268,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2637:4:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "2614:39:4"
-            },
-            "returnParameters": {
-              "id": 271,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2669:0:4"
-            },
-            "scope": 294,
-            "src": "2589:82:4",
-            "stateMutability": "payable",
-            "virtual": false,
-            "visibility": "public"
+                "children": [],
+                "id": 16,
+                "name": "Block",
+                "src": "533:2:0"
+              }
+            ],
+            "id": 17,
+            "name": "FunctionDefinition",
+            "src": "449:86:0"
           },
           {
-            "body": {
-              "id": 278,
-              "nodeType": "Block",
-              "src": "2984:2:4",
-              "statements": []
-            },
-            "functionSelector": "e66c1bea",
-            "id": 279,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "setSponsorForCollateral",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 276,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 275,
-                  "mutability": "mutable",
-                  "name": "contractAddr",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 279,
-                  "src": "2947:20:4",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 274,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2947:7:4",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "documentation": "@dev get current Sponsored Gas fee upper bound\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "2946:22:4"
+              "name": "getSponsoredGasFeeUpperBound",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "returnParameters": {
-              "id": 277,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2984:0:4"
-            },
-            "scope": 294,
-            "src": "2914:72:4",
-            "stateMutability": "payable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 285,
-              "nodeType": "Block",
-              "src": "3265:2:4",
-              "statements": []
-            },
-            "functionSelector": "10128d3e",
-            "id": 286,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "addPrivilege",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 283,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 282,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 286,
-                  "src": "3240:16:4",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 280,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "3240:7:4",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 25,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
                     },
-                    "id": 281,
-                    "nodeType": "ArrayTypeName",
-                    "src": "3240:9:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "3239:18:4"
-            },
-            "returnParameters": {
-              "id": 284,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "3265:0:4"
-            },
-            "scope": 294,
-            "src": "3218:49:4",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 18,
+                        "name": "ElementaryTypeName",
+                        "src": "713:7:0"
+                      }
+                    ],
+                    "id": 19,
+                    "name": "VariableDeclaration",
+                    "src": "713:20:0"
+                  }
+                ],
+                "id": 20,
+                "name": "ParameterList",
+                "src": "712:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 25,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 21,
+                        "name": "ElementaryTypeName",
+                        "src": "756:4:0"
+                      }
+                    ],
+                    "id": 22,
+                    "name": "VariableDeclaration",
+                    "src": "756:4:0"
+                  }
+                ],
+                "id": 23,
+                "name": "ParameterList",
+                "src": "755:6:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 24,
+                "name": "Block",
+                "src": "762:2:0"
+              }
+            ],
+            "id": 25,
+            "name": "FunctionDefinition",
+            "src": "675:89:0"
           },
           {
-            "body": {
-              "id": 292,
-              "nodeType": "Block",
-              "src": "3554:2:4",
-              "statements": []
-            },
-            "functionSelector": "d2932db6",
-            "id": 293,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "removePrivilege",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 290,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 289,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 293,
-                  "src": "3529:16:4",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
-                    "typeString": "address[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 287,
-                      "name": "address",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "3529:7:4",
-                      "stateMutability": "nonpayable",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "id": 288,
-                    "nodeType": "ArrayTypeName",
-                    "src": "3529:9:4",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
-                      "typeString": "address[]"
-                    }
-                  },
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "documentation": "@dev get collateral sponsor address\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "3528:18:4"
+              "name": "getSponsorForCollateral",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "returnParameters": {
-              "id": 291,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "3554:0:4"
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 33,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 26,
+                        "name": "ElementaryTypeName",
+                        "src": "926:7:0"
+                      }
+                    ],
+                    "id": 27,
+                    "name": "VariableDeclaration",
+                    "src": "926:20:0"
+                  }
+                ],
+                "id": 28,
+                "name": "ParameterList",
+                "src": "925:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 33,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 29,
+                        "name": "ElementaryTypeName",
+                        "src": "969:7:0"
+                      }
+                    ],
+                    "id": 30,
+                    "name": "VariableDeclaration",
+                    "src": "969:7:0"
+                  }
+                ],
+                "id": 31,
+                "name": "ParameterList",
+                "src": "968:9:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 32,
+                "name": "Block",
+                "src": "978:2:0"
+              }
+            ],
+            "id": 33,
+            "name": "FunctionDefinition",
+            "src": "893:87:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev get current Sponsored Balance for collateral\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getSponsoredBalanceForCollateral",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "scope": 294,
-            "src": "3504:52:4",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 41,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 34,
+                        "name": "ElementaryTypeName",
+                        "src": "1165:7:0"
+                      }
+                    ],
+                    "id": 35,
+                    "name": "VariableDeclaration",
+                    "src": "1165:20:0"
+                  }
+                ],
+                "id": 36,
+                "name": "ParameterList",
+                "src": "1164:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 41,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 37,
+                        "name": "ElementaryTypeName",
+                        "src": "1208:4:0"
+                      }
+                    ],
+                    "id": 38,
+                    "name": "VariableDeclaration",
+                    "src": "1208:4:0"
+                  }
+                ],
+                "id": 39,
+                "name": "ParameterList",
+                "src": "1207:6:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 40,
+                "name": "Block",
+                "src": "1214:2:0"
+              }
+            ],
+            "id": 41,
+            "name": "FunctionDefinition",
+            "src": "1123:93:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev check if a user is in a contract's whitelist\n@param contractAddr The address of the sponsored contract\n@param user The address of contract user",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isWhitelisted",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 42,
+                        "name": "ElementaryTypeName",
+                        "src": "1430:7:0"
+                      }
+                    ],
+                    "id": 43,
+                    "name": "VariableDeclaration",
+                    "src": "1430:20:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "user",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 44,
+                        "name": "ElementaryTypeName",
+                        "src": "1452:7:0"
+                      }
+                    ],
+                    "id": 45,
+                    "name": "VariableDeclaration",
+                    "src": "1452:12:0"
+                  }
+                ],
+                "id": 46,
+                "name": "ParameterList",
+                "src": "1429:36:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 51,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 47,
+                        "name": "ElementaryTypeName",
+                        "src": "1487:4:0"
+                      }
+                    ],
+                    "id": 48,
+                    "name": "VariableDeclaration",
+                    "src": "1487:4:0"
+                  }
+                ],
+                "id": 49,
+                "name": "ParameterList",
+                "src": "1486:6:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 50,
+                "name": "Block",
+                "src": "1493:2:0"
+              }
+            ],
+            "id": 51,
+            "name": "FunctionDefinition",
+            "src": "1407:88:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev check if all users are in a contract's whitelist\n@param contractAddr The address of the sponsored contract",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isAllWhitelisted",
+              "scope": 106,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 59,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 52,
+                        "name": "ElementaryTypeName",
+                        "src": "1668:7:0"
+                      }
+                    ],
+                    "id": 53,
+                    "name": "VariableDeclaration",
+                    "src": "1668:20:0"
+                  }
+                ],
+                "id": 54,
+                "name": "ParameterList",
+                "src": "1667:22:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 59,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 55,
+                        "name": "ElementaryTypeName",
+                        "src": "1711:4:0"
+                      }
+                    ],
+                    "id": 56,
+                    "name": "VariableDeclaration",
+                    "src": "1711:4:0"
+                  }
+                ],
+                "id": 57,
+                "name": "ParameterList",
+                "src": "1710:6:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 58,
+                "name": "Block",
+                "src": "1717:2:0"
+              }
+            ],
+            "id": 59,
+            "name": "FunctionDefinition",
+            "src": "1642:77:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev contract admin add user to whitelist\n@param contractAddr The address of the sponsored contract\n@param addresses The user address array",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addPrivilegeByAdmin",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 68,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 60,
+                        "name": "ElementaryTypeName",
+                        "src": "1966:7:0"
+                      }
+                    ],
+                    "id": 61,
+                    "name": "VariableDeclaration",
+                    "src": "1966:20:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "addresses",
+                      "scope": 68,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 62,
+                            "name": "ElementaryTypeName",
+                            "src": "1988:7:0"
+                          }
+                        ],
+                        "id": 63,
+                        "name": "ArrayTypeName",
+                        "src": "1988:9:0"
+                      }
+                    ],
+                    "id": 64,
+                    "name": "VariableDeclaration",
+                    "src": "1988:26:0"
+                  }
+                ],
+                "id": 65,
+                "name": "ParameterList",
+                "src": "1965:50:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 66,
+                "name": "ParameterList",
+                "src": "2023:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 67,
+                "name": "Block",
+                "src": "2023:2:0"
+              }
+            ],
+            "id": 68,
+            "name": "FunctionDefinition",
+            "src": "1937:88:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev contract admin remove user from whitelist\n@param contractAddr The address of the sponsored contract\n@param addresses The user address array",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removePrivilegeByAdmin",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 77,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 69,
+                        "name": "ElementaryTypeName",
+                        "src": "2244:7:0"
+                      }
+                    ],
+                    "id": 70,
+                    "name": "VariableDeclaration",
+                    "src": "2244:20:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "addresses",
+                      "scope": 77,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 71,
+                            "name": "ElementaryTypeName",
+                            "src": "2266:7:0"
+                          }
+                        ],
+                        "id": 72,
+                        "name": "ArrayTypeName",
+                        "src": "2266:9:0"
+                      }
+                    ],
+                    "id": 73,
+                    "name": "VariableDeclaration",
+                    "src": "2266:26:0"
+                  }
+                ],
+                "id": 74,
+                "name": "ParameterList",
+                "src": "2243:50:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 75,
+                "name": "ParameterList",
+                "src": "2301:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 76,
+                "name": "Block",
+                "src": "2301:2:0"
+              }
+            ],
+            "id": 77,
+            "name": "FunctionDefinition",
+            "src": "2212:91:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setSponsorForGas",
+              "scope": 106,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 85,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 78,
+                        "name": "ElementaryTypeName",
+                        "src": "2615:7:0"
+                      }
+                    ],
+                    "id": 79,
+                    "name": "VariableDeclaration",
+                    "src": "2615:20:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "upperBound",
+                      "scope": 85,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 80,
+                        "name": "ElementaryTypeName",
+                        "src": "2637:4:0"
+                      }
+                    ],
+                    "id": 81,
+                    "name": "VariableDeclaration",
+                    "src": "2637:15:0"
+                  }
+                ],
+                "id": 82,
+                "name": "ParameterList",
+                "src": "2614:39:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 83,
+                "name": "ParameterList",
+                "src": "2669:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 84,
+                "name": "Block",
+                "src": "2669:2:0"
+              }
+            ],
+            "id": 85,
+            "name": "FunctionDefinition",
+            "src": "2589:82:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setSponsorForCollateral",
+              "scope": 106,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "contractAddr",
+                      "scope": 91,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 86,
+                        "name": "ElementaryTypeName",
+                        "src": "2947:7:0"
+                      }
+                    ],
+                    "id": 87,
+                    "name": "VariableDeclaration",
+                    "src": "2947:20:0"
+                  }
+                ],
+                "id": 88,
+                "name": "ParameterList",
+                "src": "2946:22:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 89,
+                "name": "ParameterList",
+                "src": "2984:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 90,
+                "name": "Block",
+                "src": "2984:2:0"
+              }
+            ],
+            "id": 91,
+            "name": "FunctionDefinition",
+            "src": "2914:72:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addPrivilege",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 98,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 92,
+                            "name": "ElementaryTypeName",
+                            "src": "3240:7:0"
+                          }
+                        ],
+                        "id": 93,
+                        "name": "ArrayTypeName",
+                        "src": "3240:9:0"
+                      }
+                    ],
+                    "id": 94,
+                    "name": "VariableDeclaration",
+                    "src": "3240:16:0"
+                  }
+                ],
+                "id": 95,
+                "name": "ParameterList",
+                "src": "3239:18:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 96,
+                "name": "ParameterList",
+                "src": "3265:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 97,
+                "name": "Block",
+                "src": "3265:2:0"
+              }
+            ],
+            "id": 98,
+            "name": "FunctionDefinition",
+            "src": "3218:49:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removePrivilege",
+              "scope": 106,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 105,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 99,
+                            "name": "ElementaryTypeName",
+                            "src": "3529:7:0"
+                          }
+                        ],
+                        "id": 100,
+                        "name": "ArrayTypeName",
+                        "src": "3529:9:0"
+                      }
+                    ],
+                    "id": 101,
+                    "name": "VariableDeclaration",
+                    "src": "3529:16:0"
+                  }
+                ],
+                "id": 102,
+                "name": "ParameterList",
+                "src": "3528:18:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 103,
+                "name": "ParameterList",
+                "src": "3554:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 104,
+                "name": "Block",
+                "src": "3554:2:0"
+              }
+            ],
+            "id": 105,
+            "name": "FunctionDefinition",
+            "src": "3504:52:0"
           }
         ],
-        "scope": 295,
-        "src": "29:3530:4"
+        "id": 106,
+        "name": "ContractDefinition",
+        "src": "29:3530:0"
       }
     ],
-    "src": "0:3559:4"
+    "id": 107,
+    "name": "SourceUnit",
+    "src": "0:3559:0"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.8.0+commit.c7dfd78e.Linux.g++"
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.2.0",
-  "updatedAt": "2021-01-04T22:33:44.164Z",
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-03-24T15:19:31.577Z",
   "devdoc": {
-    "kind": "dev",
     "methods": {
       "addPrivilegeByAdmin(address,address[])": {
         "details": "contract admin add user to whitelist",
@@ -2726,12 +2850,9 @@
           "contractAddr": "The address of the sponsored contract"
         }
       }
-    },
-    "version": 1
+    }
   },
   "userdoc": {
-    "kind": "user",
-    "methods": {},
-    "version": 1
+    "methods": {}
   }
 }

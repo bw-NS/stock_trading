@@ -12,12 +12,8 @@ contract orderBook {
     address[] UserList;
     mapping(address => string) Alias; 
     address admin; 
-    uint256[][2] id_array;                      //store all the unfilled orderIds 
                                                 //split to index 0:buy 1:sell
-
     mapping(uint256 => Order.Data) private orders; // array of orders storing data 
-
-    mapping(string => uint256) completeData;        //for future use record order have been filled
 
     string[MAX_STOCK] stockTable;                   //store all the stocks
     uint256 num_stock = 0;                          // stock index tracker 
@@ -122,15 +118,15 @@ contract orderBook {
         emit user_deposite(Alias[msg.sender], numTokens, CashTable[msg.sender]); 
     }
     event user_withdraw(string user, uint256 value, uint256 balance);
-    function withdraw(uint256 amount) public {
+    function withdraw(uint256 amount) public payable{
         bool _e;
         uint256 number; 
         (_e, number) = checkUserExist(msg.sender);
         require(_e, "user not exist"); 
         require(amount <= CashTable[msg.sender], "not enough balance");
         CashTable[msg.sender] -= amount;
-        payable(msg.sender).transfer(amount*PRICE_PER_TOKEN);
-        user_withdraw(Alias[msg.sender], amount, CashTable[msg.sender]);
+        msg.sender.transfer(amount*PRICE_PER_TOKEN);
+        emit user_withdraw(Alias[msg.sender], amount, CashTable[msg.sender]);
     }
     function getBalance(address user) public view returns(uint256){
         return CashTable[user];
@@ -359,9 +355,6 @@ contract orderBook {
         require(_e, "User not registered"); 
         uint256 _typ = uint256(typ);
         if (_typ<2){      //save if buy/sell, fill if ask   
-            //check condition commented out for debugging convinience
-            //if(_typ==0){require(msg.sender.balance>fund, "buyer don't have enough fund"); }
-            //if(_typ==1){require(propertyTable[msg.sender][stock]>=volumn, "seller don't have enough stock to sell");} 
             uint256 better;
             uint256 worse;
             (better, worse) = getBetterOrder( stock, typ, price);
@@ -376,6 +369,11 @@ contract orderBook {
             _order.matchtype = matchtype;
             _order.price = price;
             
+            (_e , _i) = fillOrder(_order);
+            if(_e){
+                return true;
+            }
+            _order.volumn = _i;
             //link list manipulation
             if(better==MAX_ORDER ){
                 if(bestOrders[stock][_typ] == MAX_ORDER){
@@ -407,7 +405,6 @@ contract orderBook {
                 }
             }
 
-            id_array[_typ].push(_orderId);
             addOrderToUser(msg.sender, typ, _orderId);
             addOrderToStock(stock, typ,  _orderId);
             emit savedOrderInfo( _orderId, stock,typ, price, matchtype);
@@ -448,7 +445,6 @@ contract orderBook {
     
     //remove order globally
     function removeOrder(uint256 _orderId) public returns(bool){
-        require(removeFromIdArray(_orderId), "Order not exist");
         Order.Data memory _data= getOrderData(_orderId);
         uint256 _typ = uint256(_data.typ);
         require(removeOrderFromStock(_data.stock,_data.typ, _orderId), "Order not registered to stock");
@@ -458,36 +454,6 @@ contract orderBook {
         Idvacancy.push(_orderId);
         emit removedOrderInfo(_orderId, _data.creator, _data.stock, _data.typ, _data.price );
         return true;
-    }
-    //TODO: remove ID_array 
-    function checkOrderExist(uint256 _orderId) internal view returns(bool, uint256){
-        Order.Data memory _data = getOrderData(_orderId);
-        uint256 _typ = uint256(_data.typ);
-        require(_typ != 2, "ask order is not stored");
-        for(uint256 i=0; i<id_array[_typ].length;i++){
-            if (id_array[_typ][i]==_orderId){
-                return (true, i );
-            }
-        }
-        return (false, MAX_ORDER);
-    }
-    //remove helper
-    function removeFromIdArray(uint256 _orderId) internal returns(bool){
-        bool _exist;
-        uint256 index;
-        Order.Data memory _data = getOrderData(_orderId);
-        uint256 _typ = uint256(_data.typ);
-        require(_typ != 2, "ask order is not stored");
-        (_exist, index) = checkOrderExist(_orderId);
-        if(_exist){
-            id_array[_typ][index] = id_array[_typ][id_array[_typ].length-1];
-            id_array[_typ].pop();
-            return true;
-        }
-        return false;
-    }
-    function getArraylength() internal view returns(uint, uint){
-        return (id_array[0].length, id_array[1].length);
     }
 
     //find the position in linklist of the order
@@ -554,7 +520,15 @@ contract orderBook {
 
     //run when order is created 
     event orderfilled(uint256 orderID, address buyer, address seller, string stock, uint256 price, uint256 volumn);
-    function fillOrder(address owner, string memory stock, Order.Types typ, Order.MatchTypes matchtype, uint256 price, uint256 volumn) public returns(bool, uint256){
+    function fillOrder(Order.Data memory order) public returns(bool, uint256){
+        
+        address owner = order.creator;
+        string memory stock = order.stock;
+        Order.Types typ = order.typ;
+        Order.MatchTypes matchtype =order.matchtype; 
+        uint256 price = order.price; 
+        uint256 volumn = order.volumn;
+        
         if(matchtype == Order.MatchTypes.imme){
             if(typ == Order.Types.buy){
                 bool matchnext = true;
@@ -611,7 +585,7 @@ contract orderBook {
                             return (true, 0);
                         }
                         else{
-                            transfer( owner, buyer , stock, m_price, volumn);
+                            transfer(owner, buyer , stock, m_price, volumn);
                             orders[bestbuy].volumn = m_v - volumn; 
                             emit orderfilled(bestbuy, buyer, owner, stock, m_price, volumn);
                             return (true, 0);
@@ -634,7 +608,6 @@ contract orderBook {
                     if(m_price > price) return(false, volumn);
                     if(m_v<volumn){
                         volumn -= getOrderVolume(bestsell);
-                        
                         transfer(seller, owner , stock, m_price, m_v);
                         removeOrder(bestsell);
                         emit orderfilled(bestsell, owner, seller, stock, m_price, m_v);
