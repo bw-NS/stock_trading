@@ -57,6 +57,7 @@ contract orderBook {
         
         return (num, _s, _v);
     }
+    
     event reg_message(address addr , string Alias);
     function userRegister(string memory ali) public{
         address addr = msg.sender;
@@ -72,7 +73,7 @@ contract orderBook {
         }
     }
 
-    function checkUserExist(address addr) internal view returns(bool, uint256){
+    function checkUserExist(address addr) public view returns(bool, uint256){
         for(uint256 i =0 ; i<UserList.length; i++){
             if (addr == UserList[i]){
                 return (true, i);
@@ -106,16 +107,16 @@ contract orderBook {
         }
         return (UserList, Ali);
     }
-    event user_deposite(string user, uint256 value, uint256 balance);
-    function deposite(uint256 numTokens) public payable {
+    event user_deposite(string user, uint256 value, uint256 token, uint256 balance);
+    function deposite() public payable {
         bool _e;
         uint256 number; 
         (_e, number) = checkUserExist(msg.sender);
         require(_e, "user not exist"); 
-        require(msg.value>0, "value must be positive");
-        require(msg.value == numTokens * PRICE_PER_TOKEN);
-        CashTable[msg.sender] += numTokens;
-        emit user_deposite(Alias[msg.sender], numTokens, CashTable[msg.sender]); 
+        //require(msg.value>0, "value must be positive");
+        //require(msg.value == numTokens * PRICE_PER_TOKEN);
+        CashTable[msg.sender] += msg.value/PRICE_PER_TOKEN;
+        emit user_deposite(Alias[msg.sender],msg.value, msg.value/PRICE_PER_TOKEN, CashTable[msg.sender]); 
     }
     event user_withdraw(string user, uint256 value, uint256 balance);
     function withdraw(uint256 amount) public payable{
@@ -125,7 +126,7 @@ contract orderBook {
         require(_e, "user not exist"); 
         require(amount <= CashTable[msg.sender], "not enough balance");
         CashTable[msg.sender] -= amount;
-        msg.sender.transfer(amount*PRICE_PER_TOKEN);
+        payable(msg.sender).transfer(amount*PRICE_PER_TOKEN);
         emit user_withdraw(Alias[msg.sender], amount, CashTable[msg.sender]);
     }
     function getBalance(address user) public view returns(uint256){
