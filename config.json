@@ -1,6 +1,7 @@
 {
-  "main": "./contracts/orderBook.sol",
-  "deploy": "./build/contracts/orderBook.json",
+  "language": "",
+  "main": "./contracts/SmartBull.sol",
+  "deploy": "./build/contracts/SmartBull.json",
   "compilers": {
     "cfxtruffle": "0.0.8",
     "solc": "0.8.0"

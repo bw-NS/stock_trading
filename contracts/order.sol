@@ -9,15 +9,16 @@ library Order {
     }
     struct Data{
 
-        uint256 id;
+        bytes32 id;
         address creator;
         Order.Types  typ; //buy sell ask
         string  stock; //  string
         uint256  volumn; //  int
         Order.MatchTypes matchtype; // type include {immediate, limited}
         uint256 price;
-        uint256 betterOrder;
-        uint256 worseOrder;
+        bytes32 betterOrder;
+        bytes32 worseOrder;
+        uint time;
     }
     struct Property{
         string stock;
